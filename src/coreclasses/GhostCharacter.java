@@ -1,3 +1,4 @@
+package coreclasses;
 public class GhostCharacter extends Character {
 		public GhostCharacter(String newName) {
 			super(newName);

@@ -1,3 +1,4 @@
+package coreclasses;
 
 public class Character {
 	protected String name;

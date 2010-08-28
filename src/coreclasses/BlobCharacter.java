@@ -1,3 +1,5 @@
+package coreclasses;
+
 public class BlobCharacter extends Character {
 
 		public BlobCharacter(String newName) {

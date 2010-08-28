@@ -1,3 +1,4 @@
+package coreclasses;
 public class SlashingWeapon extends Weapon {
 		public SlashingWeapon(String newWeapon) {
 			super(newWeapon);

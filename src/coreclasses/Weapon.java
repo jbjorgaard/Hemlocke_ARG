@@ -1,3 +1,5 @@
+package coreclasses;
+
 public class Weapon {
 		private String type;
 		public Weapon(String newWeapon) {

@@ -1,3 +1,4 @@
+package coreclasses;
 public class PropWeapon extends Weapon {
 		public PropWeapon(String newWeapon) {
 			super(newWeapon);
