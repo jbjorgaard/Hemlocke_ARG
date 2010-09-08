@@ -9,7 +9,6 @@ import userCommands.PlayerLogout;
 
 public class ReadPlayerCommand {
 	public String readCommand(String playerCommand) {
-		System.out.println("The command you gave is: " + playerCommand);
 		
 		String command[] = null;
 		command = playerCommand.split(" ");
@@ -36,6 +35,9 @@ public class ReadPlayerCommand {
 			pl.logoutCharacter();
 		} else {
 			System.out.println("Command not recognized.");
+
+			GetPlayerCommand gpc = new GetPlayerCommand();
+			gpc.enterCommand();
 		}
 		
 		return null;
