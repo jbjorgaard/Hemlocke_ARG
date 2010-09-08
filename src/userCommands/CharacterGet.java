@@ -12,7 +12,6 @@ public class CharacterGet {
 		
 		System.out.println("You are getting the " + secondWord + ".");
 		
-
 		GetPlayerCommand gpc = new GetPlayerCommand();
 		gpc.enterCommand();
 	}

@@ -5,8 +5,6 @@ import userCommands.CharacterGet;
 import userCommands.CharacterGo;
 import userCommands.CharacterLook;
 import userCommands.PlayerHelp;
-import userCommands.PlayerLogin;
-import userCommands.PlayerLogout;
 
 public class ReadPlayerCommand {
 	public String readCommand(String playerCommand) {
@@ -16,10 +14,7 @@ public class ReadPlayerCommand {
 		
 		String firstWord = command[0];
 		
-		if (firstWord.equals("login")) {
-			PlayerLogin ul = new PlayerLogin();
-			ul.loginCharacter(playerCommand);
-		} else if (firstWord.equals("look")) {
+		if (firstWord.equals("look")) {
 			CharacterLook cl = new CharacterLook();
 			cl.look(playerCommand);
 		} else if (firstWord.equals("go")) {
@@ -31,9 +26,6 @@ public class ReadPlayerCommand {
 		} else if (firstWord.equals("drop")) {
 			CharacterDrop cd = new CharacterDrop();
 			cd.drop(playerCommand);
-		} else if (firstWord.equals("quit")) {
-			PlayerLogout pl = new PlayerLogout();
-			pl.logoutCharacter();
 		} else if (firstWord.equals("help")) {
 			PlayerHelp ph = new PlayerHelp();
 			ph.help();
