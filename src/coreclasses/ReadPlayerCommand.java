@@ -1,5 +1,7 @@
 package coreclasses;
 
+import userCommands.CharacterDrop;
+import userCommands.CharacterGet;
 import userCommands.CharacterGo;
 import userCommands.CharacterLook;
 import userCommands.PlayerLogin;
@@ -23,24 +25,18 @@ public class ReadPlayerCommand {
 		} else if (firstWord.equals("go")) {
 			CharacterGo cg = new CharacterGo();
 			cg.go(playerCommand);
+		} else if (firstWord.equals("get")) {
+			CharacterGet get = new CharacterGet();
+			get.cGet(playerCommand);
+		} else if (firstWord.equals("drop")) {
+			CharacterDrop cd = new CharacterDrop();
+			cd.drop(playerCommand);
 		} else if (firstWord.equals("quit")) {
 			PlayerLogout pl = new PlayerLogout();
 			pl.logoutCharacter();
 		} else {
 			System.out.println("Command not recognized.");
 		}
-		
-		/*if (firstWord.equals("login")) {
-			System.out.println("Please login with your username.");
-		} else if (firstWord.equals("look")) {
-			System.out.println("You look around the room");
-		} else if (firstWord.equals("go")) {
-			System.out.println("You go to the next room");
-		} else if (firstWord.equals("quit")) {
-			System.out.println("You have logged out.");
-		} else {
-			System.out.println("Command not recognized.");
-		}*/
 		
 		return null;
 	}
