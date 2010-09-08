@@ -1,5 +1,10 @@
 package coreclasses;
 
+import userCommands.CharacterGo;
+import userCommands.CharacterLook;
+import userCommands.PlayerLogin;
+import userCommands.PlayerLogout;
+
 public class ReadPlayerCommand {
 	public String readCommand(String playerCommand) {
 		System.out.println("The command you gave is: " + playerCommand);

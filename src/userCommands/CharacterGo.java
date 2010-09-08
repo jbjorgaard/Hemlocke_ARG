@@ -1,4 +1,4 @@
-package coreclasses;
+package userCommands;
 
 public class CharacterGo {
 
