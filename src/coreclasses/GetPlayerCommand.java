@@ -19,8 +19,6 @@ public class GetPlayerCommand {
 			System.exit(1);
 		}
 		
-		System.out.println("[Your Character] " + playerCommand + ".");
-		
 		ReadPlayerCommand rpc = new ReadPlayerCommand();
 		rpc.readCommand(playerCommand);
 		
