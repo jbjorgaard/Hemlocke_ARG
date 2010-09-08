@@ -4,6 +4,7 @@ import userCommands.CharacterDrop;
 import userCommands.CharacterGet;
 import userCommands.CharacterGo;
 import userCommands.CharacterLook;
+import userCommands.PlayerHelp;
 import userCommands.PlayerLogin;
 import userCommands.PlayerLogout;
 
@@ -33,6 +34,9 @@ public class ReadPlayerCommand {
 		} else if (firstWord.equals("quit")) {
 			PlayerLogout pl = new PlayerLogout();
 			pl.logoutCharacter();
+		} else if (firstWord.equals("help")) {
+			PlayerHelp ph = new PlayerHelp();
+			ph.help();
 		} else {
 			System.out.println("Command not recognized.");
 

@@ -6,7 +6,7 @@ public class GetPlayerCommand {
 	
 	public String enterCommand() {
 	
-		System.out.println("Enter a command: ");
+		System.out.println("Enter a command: \nType 'help' to get a list of commands");
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
