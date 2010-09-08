@@ -1,5 +1,7 @@
 package userCommands;
 
+import coreclasses.GetPlayerCommand;
+
 public class CharacterGet {
 
 	public void cGet(String playerCommand) {
@@ -9,6 +11,10 @@ public class CharacterGet {
 		String secondWord = command[1];
 		
 		System.out.println("You are getting the " + secondWord + ".");
+		
+
+		GetPlayerCommand gpc = new GetPlayerCommand();
+		gpc.enterCommand();
 	}
 	
 }

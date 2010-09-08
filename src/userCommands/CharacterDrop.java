@@ -1,5 +1,7 @@
 package userCommands;
 
+import coreclasses.GetPlayerCommand;
+
 public class CharacterDrop {
 
 	public void drop(String playerCommand) {
@@ -9,6 +11,9 @@ public class CharacterDrop {
 		String secondWord = command[1];
 		
 		System.out.println("You are dropping the " + secondWord + ".");
+		
+		GetPlayerCommand gpc = new GetPlayerCommand();
+		gpc.enterCommand();
 	}
 
 }
