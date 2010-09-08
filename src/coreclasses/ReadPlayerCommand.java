@@ -2,13 +2,24 @@ package coreclasses;
 
 public class ReadPlayerCommand {
 	public String readCommand(String playerCommand) {
-		System.out.println("The system is now reading your command.");
+		System.out.println("The command you gave is: " + playerCommand);
 		
 		String command[] = null;
 		command = playerCommand.split(" ");
 		
-		System.out.println("The first word in the command is: " + command[0]);
-		System.out.println("The second word in the command is: " + command[1]);
+		String firstWord = command[0];
+		
+		if (firstWord.equals("login")) {
+			System.out.println("Please login with your username.");
+		} else if (firstWord.equals("look")) {
+			System.out.println("You look around the room");
+		} else if (firstWord.equals("go")) {
+			System.out.println("You go to the next room");
+		} else if (firstWord.equals("quit")) {
+			System.out.println("You have logged out.");
+		} else {
+			System.out.println("Command not recognized.");
+		}
 		
 		return null;
 	}
