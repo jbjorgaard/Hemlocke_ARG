@@ -20,6 +20,10 @@ public class GetPlayerCommand {
 		}
 		
 		System.out.println("[Your Character] " + playerCommand + ".");
+		
+		ReadPlayerCommand rpc = new ReadPlayerCommand();
+		rpc.readCommand(playerCommand);
+		
 		return playerCommand;
 	}
 	
