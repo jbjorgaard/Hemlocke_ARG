@@ -1,7 +1,5 @@
 package userCommands;
 
-import coreclasses.GetPlayerCommand;
-
 public class CharacterGo {
 
 	public void go(String playerCommand) {
@@ -12,8 +10,6 @@ public class CharacterGo {
 		
 		System.out.println("You are going " + secondWord + ".");
 
-		GetPlayerCommand gpc = new GetPlayerCommand();
-		gpc.enterCommand();
 	}	
 
 }

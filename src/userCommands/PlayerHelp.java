@@ -1,7 +1,5 @@
 package userCommands;
 
-import coreclasses.GetPlayerCommand;
-
 public class PlayerHelp {
 
 	public void help() {
@@ -14,8 +12,6 @@ public class PlayerHelp {
 		System.out.println("quit -logs out of character-");
 		System.out.println("exit -closes game client-");
 		System.out.println("");
-		GetPlayerCommand gpc = new GetPlayerCommand();
-		gpc.enterCommand();
 		
 	}
 

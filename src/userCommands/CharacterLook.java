@@ -1,7 +1,5 @@
 package userCommands;
 
-import coreclasses.GetPlayerCommand;
-
 public class CharacterLook {
 
 	public void look(String playerCommand) {
@@ -12,8 +10,6 @@ public class CharacterLook {
 		
 		System.out.println("You are looking " + secondWord + ".");
 
-		GetPlayerCommand gpc = new GetPlayerCommand();
-		gpc.enterCommand();
 	}
 
 }
