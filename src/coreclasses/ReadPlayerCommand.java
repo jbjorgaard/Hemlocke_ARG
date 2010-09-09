@@ -5,6 +5,7 @@ import userCommands.CharacterGet;
 import userCommands.CharacterGo;
 import userCommands.CharacterLook;
 import userCommands.PlayerHelp;
+import userCommands.PlayerLogout;
 
 public class ReadPlayerCommand {
 	public String readCommand(String playerCommand) {
@@ -26,6 +27,9 @@ public class ReadPlayerCommand {
 		} else if (firstWord.equals("drop")) {
 			CharacterDrop cd = new CharacterDrop();
 			cd.drop(playerCommand);
+		} else if (firstWord.equals("quit")) {
+			PlayerLogout pl = new PlayerLogout();
+			pl.logout();
 		} else if (firstWord.equals("help")) {
 			PlayerHelp ph = new PlayerHelp();
 			ph.help();

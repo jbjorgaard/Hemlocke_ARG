@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class HemlockeGame {
 	
-	private void login() {
+	public void login() {
 		System.out.println("Please enter your username and password: ");
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +25,7 @@ public class HemlockeGame {
 		
 	}
 	
-	private void startPlaying() {
+	public void startPlaying() {
 		GetPlayerCommand get = new GetPlayerCommand();
 		get.enterCommand();
 	}

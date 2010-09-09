@@ -11,6 +11,7 @@ public class PlayerHelp {
 		System.out.println("go <forward, left, right, back>");
 		System.out.println("get <itemname>");
 		System.out.println("drop <itemname>");
+		System.out.println("quit");
 		System.out.println("");
 		GetPlayerCommand gpc = new GetPlayerCommand();
 		gpc.enterCommand();
