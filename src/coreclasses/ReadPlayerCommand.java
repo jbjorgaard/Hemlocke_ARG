@@ -4,6 +4,7 @@ import userCommands.CharacterDrop;
 import userCommands.CharacterGet;
 import userCommands.CharacterGo;
 import userCommands.CharacterLook;
+import userCommands.ExitGame;
 import userCommands.PlayerHelp;
 import userCommands.PlayerLogout;
 
@@ -30,7 +31,10 @@ public class ReadPlayerCommand {
 		} else if (firstWord.equals("quit")) {
 			PlayerLogout pl = new PlayerLogout();
 			pl.logout();
-		} else if (firstWord.equals("help")) {
+		} else if (firstWord.equals("exit")) {
+			ExitGame exit = new ExitGame();
+			exit.leaveGame();
+		}	else if (firstWord.equals("help")) {
 			PlayerHelp ph = new PlayerHelp();
 			ph.help();
 		} else {
