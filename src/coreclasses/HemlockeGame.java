@@ -3,6 +3,7 @@ package coreclasses;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import userCommands.CharacterDrop;
 import userCommands.CharacterGet;
 import userCommands.CharacterGo;
@@ -13,38 +14,63 @@ import userCommands.PlayerLogout;
 public class HemlockeGame {
 	
 	public boolean gameRunning = true;
-	
 	public void login() {
-		System.out.println("Please enter your username and password: ");
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Player p1 = new Player();
+		p1.setInfo("peartree", "Hemlocke", "a particularly sadistic Fairest with a fondness of poisons");
+		Player p2 = new Player();
+		p2.setInfo("sugarplum", "Nightshade", "an emotionally unstable Darkling with control over the dream world");
 		
-		String playerLogin = null;
 		
-		try {
-			playerLogin = br.readLine();
-		} catch (IOException ioe) {
-			System.out.println("There was an error trying to read your command.");
-			System.exit(1);
+		boolean loggedOut = true;
+		
+		while(loggedOut) {
+			
+			System.out.println("Please enter your username: ");
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			
+			String playerLogin = null;
+			
+			try {
+				playerLogin = br.readLine();
+			} catch (IOException ioe) {
+				System.out.println("There was an error trying to read your command.");
+				System.exit(1);
+			}
+			
+			HashMap<String, Player> hm = new HashMap<String, Player>();
+			hm.put("jeremiah", p1);
+			hm.put("jonathan", p2);
+		
+					
+			System.out.println("Please enter your password: ");
+			
+			BufferedReader brpwd = new BufferedReader(new InputStreamReader(System.in));
+			
+			String playerPwd = null;
+			String password = hm.get(playerLogin).getPassword();
+			
+			try {
+				playerPwd = brpwd.readLine();
+			} catch (IOException ioe) {
+				System.out.println("There was an error trying to read your command.");
+				System.exit(1);
+			}
+			
+			if(playerPwd.equals(password)) {
+				System.out.println("You have sucessfully logged in.");
+				System.out.println("You are playing " + hm.get(playerLogin).getName() + ",");
+				System.out.println(hm.get(playerLogin).getDescription());
+				loggedOut = false;
+			} else {
+				System.out.println("Please try again.");
+			}
 		}
 		
-		readLogin(playerLogin);
-		
 	}
 	
-	public String readLogin(String playerLogin) {
-		
-		String login[] = null;
-		login = playerLogin.split(" ");
-		
-		String userName = login[0];
-		String password = login[1];
-		
-		System.out.println("You have logged in " + userName );
-		System.out.println("Your username is [" + userName + "]. Your password is [" + password + "].");
-		
-		return null;
-	}
+	
 	
 	public String enterCommand() {
 		
@@ -64,6 +90,9 @@ public class HemlockeGame {
 		readCommand(playerCommand);
 		
 		return playerCommand;
+		
+		
+		
 	}
 	
 	public String readCommand(String playerCommand) {
@@ -108,7 +137,9 @@ public class HemlockeGame {
 	}
 	
 	public static void main(String[] args) {
+		
 		HemlockeGame game = new HemlockeGame();
+		
 		game.login();
 		game.startPlaying();
 	}
