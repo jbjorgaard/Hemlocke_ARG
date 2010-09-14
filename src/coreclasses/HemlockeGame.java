@@ -40,9 +40,7 @@ public class HemlockeGame {
 			System.out.println("There was an error trying to read your command.");
 			System.exit(1);
 		}
-		playerCommand = playerInput.split(" ");
-		
-		
+		playerCommand = playerInput.split(" ");		
 	}
 	public void loginPlayer() {
 		String playerLogin = null;
