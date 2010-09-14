@@ -1,4 +1,5 @@
-package coreclasses;
+package domain;
+
 
 public class Go extends Command{
 

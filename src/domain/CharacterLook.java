@@ -1,4 +1,4 @@
-package userCommands;
+package domain;
 
 public class CharacterLook {
 

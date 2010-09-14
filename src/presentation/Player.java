@@ -1,4 +1,4 @@
-package coreclasses;
+package presentation;
 
 public class Player {
 	String password;

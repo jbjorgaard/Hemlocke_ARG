@@ -1,9 +1,13 @@
-package coreclasses;
+package domain;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+
+import presentation.Player;
+
+
 
 
 public class HemlockeGame {
@@ -40,7 +44,7 @@ public class HemlockeGame {
 			System.out.println("There was an error trying to read your command.");
 			System.exit(1);
 		}
-		playerCommand = playerInput.split(" ");		
+		playerCommand = playerInput.split(" ");
 	}
 	public void loginPlayer() {
 		String playerLogin = null;
