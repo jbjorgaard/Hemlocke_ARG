@@ -1,6 +1,6 @@
-package domain;
+package presentation;
 
-import presentation.Events;
+import domain.Events;
 
 public abstract class Command implements Events {
 

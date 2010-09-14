@@ -1,4 +1,4 @@
-package presentation;
+package domain;
 
 public class Player {
 	String password;

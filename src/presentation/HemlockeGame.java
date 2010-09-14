@@ -1,11 +1,12 @@
-package domain;
+package presentation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-import presentation.Player;
+import domain.Player;
+
 
 
 

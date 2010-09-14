@@ -1,4 +1,4 @@
-package domain;
+package presentation;
 
 public class PlayerHelp {
 
