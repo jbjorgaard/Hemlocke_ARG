@@ -18,6 +18,7 @@ public class Look extends Command{
 		currentObject = g;
 		location = currentObject.getLocation();
 		desc = location.getDescription();
+		System.out.println(desc);
 		return l1;
 	}
 	@Override

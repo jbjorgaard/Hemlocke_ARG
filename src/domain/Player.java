@@ -10,4 +10,10 @@ public class Player {
 	public String getPassword(){
 		return password;
 	}
+	public void setCharacter(GameObject g) {
+		character = g;
+	}
+	public GameObject getCharacter() {
+		return character;
+	}
 }

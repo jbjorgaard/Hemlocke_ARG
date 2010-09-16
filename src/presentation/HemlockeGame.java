@@ -9,10 +9,10 @@ import domain.GameObject;
 import domain.Player;
 
 public class HemlockeGame {
-	HashMap<String, Player> mapLogin = new HashMap<String, Player>();;
+	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	HashMap<String, Command> mapCommand = new HashMap<String, Command>();
 	Player currentPlayer;
-	GameObject c1;
+	GameObject character;
 	
 	public static void main(String[] args) {
 		HemlockeGame game = new HemlockeGame();
@@ -26,8 +26,8 @@ public class HemlockeGame {
 		}
 	}
 	public void startPlaying() {
-		System.out.println("You are playing the character: " + c1.getName());
-		System.out.println("You are in the " + c1.getLocation().getName());
+		System.out.println("You are playing the character: " + character.getName());
+		System.out.println("You are in the " + character.getLocation().getName());
 		getUserCommand();
 	}
 	private void getUserCommand() {
@@ -43,7 +43,6 @@ public class HemlockeGame {
 			System.exit(1);
 		}
 		playerCommand = playerInput.split(" ");
-		mapCommand.get(playerCommand[0]).create(c1).processCommand();
 	}
 	public void loginPlayer() {
 		String playerLogin = null;
@@ -69,7 +68,8 @@ public class HemlockeGame {
 			}
 			currentPlayer = mapLogin.get(playerLogin);
 			if(playerPassword.equals(currentPlayer.getPassword())) {
-				System.out.println("You have sucessfully logged in.");
+				character = currentPlayer.getCharacter();
+				System.out.println("You have sucessfully logged into [" + character.getName() + "]");
 				loggedOut = false;
 			} else {
 				System.out.println("Please try again.");
@@ -82,13 +82,20 @@ public class HemlockeGame {
 		Look look = new Look();
 		Go go = new Go();
 		GameObject r1 = new GameObject();
-		c1 = new GameObject();
+		GameObject r2 = new GameObject();
+		GameObject c1 = new GameObject();
+		GameObject c2 = new GameObject();
 		
 		c1.setInfo("A troubled man in a black trenchcoat", "Hemlocke", "Character");
 		c1.setLocation(r1);
+		c2.setInfo("An overzealous wizened", "Snerbog", "Character");
+		c2.setLocation(r2);
 		r1.setInfo("An almost hidden archway, covered in years of unkept brambles.", "entry archway", "room");
+		r2.setInfo("In a clearing, in a very strange woods.", "forest clearing", "room");
 		p1.setPassword("peartree");
 		p2.setPassword("plumtree");
+		p1.setCharacter(c1);
+		p2.setCharacter(c2);
 		mapLogin.put("jeremiah", p1);
 		mapLogin.put("bill", p2);
 		mapCommand.put("look", look);
