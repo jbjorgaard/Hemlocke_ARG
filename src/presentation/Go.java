@@ -7,14 +7,14 @@ public class Go extends Command{
 	Game g1;
 	
 	@Override
-	public Go create(Thing a, String[] s) {
+	public Go process(Thing a, String[] s) {
 		return null;
 	}
 	public void setGame(Game game) {
 		g1 = game;
 	}
 	@Override
-	public void processCommand() {
+	public void output() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -37,6 +37,7 @@ public class Game {
 	private void getUserCommand() {
 		String playerInput = null;
 		String playerCommand[] = null;
+		Command command;
 		
 		System.out.println("What would you like to do?");
 		BufferedReader guc = new BufferedReader(new InputStreamReader(System.in));
@@ -47,7 +48,8 @@ public class Game {
 			System.exit(1);
 		}
 		playerCommand = playerInput.split(" ");
-		mapCommand.get(playerCommand[0]).create(character, playerCommand).processCommand();
+		command = mapCommand.get(playerCommand[0]).process(character, playerCommand);
+		command.output();
 	}
 	public void loginPlayer() {
 		String playerLogin = null;

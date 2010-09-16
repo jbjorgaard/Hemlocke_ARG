@@ -13,7 +13,7 @@ public class Look extends Command{
 		g1 = game;
 	}
 	@Override
-	public Command create(Thing a, String[] s) {
+	public Command process(Thing a, String[] s) {
 		Look l1 = new Look();
 		l1.g1 = g1;
 		l1.character = a;
@@ -22,8 +22,7 @@ public class Look extends Command{
 		l1.desc = l1.location.getDescription();
 		return l1;		
 	}
-	@Override
-	public void processCommand() {
+	public void output() {
 		System.out.println(desc);
 	}
 }
