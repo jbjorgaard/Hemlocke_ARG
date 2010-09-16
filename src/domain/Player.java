@@ -2,7 +2,7 @@ package domain;
 
 public class Player {
 	String password;
-	GameObject character;
+	Thing character;
 
 	public void setPassword(String p) {
 		password = p;
@@ -10,10 +10,10 @@ public class Player {
 	public String getPassword(){
 		return password;
 	}
-	public void setCharacter(GameObject g) {
+	public void setCharacter(Thing g) {
 		character = g;
 	}
-	public GameObject getCharacter() {
+	public Thing getCharacter() {
 		return character;
 	}
 }

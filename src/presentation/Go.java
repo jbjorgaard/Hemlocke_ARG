@@ -1,16 +1,14 @@
 package presentation;
 
-import domain.GameObject;
-
 
 public class Go extends Command{
-	HemlockeGame g1;
+	Game g1;
 	
 	@Override
-	public Go create(GameObject g) {
+	public Go create() {
 		return null;
 	}
-	public void setGame(HemlockeGame game) {
+	public void setGame(Game game) {
 		g1 = game;
 	}
 	@Override

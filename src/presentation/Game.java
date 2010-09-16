@@ -5,17 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-import domain.GameObject;
+import domain.Thing;
 import domain.Player;
 
-public class HemlockeGame {
+public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	HashMap<String, Command> mapCommand = new HashMap<String, Command>();
 	Player currentPlayer;
-	GameObject character;
+	Thing character;
+	Thing world;
 	
 	public static void main(String[] args) {
-		HemlockeGame game = new HemlockeGame();
+		Game game = new Game();
 		game.initializeGame();
 		game.runGame();
 	}
@@ -26,9 +27,13 @@ public class HemlockeGame {
 		}
 	}
 	public void startPlaying() {
+		boolean loggedIn = true;
+		
 		System.out.println("You are playing the character: " + character.getName());
 		System.out.println("You are in the " + character.getLocation().getName());
-		getUserCommand();
+		while(loggedIn) {
+			getUserCommand();
+		}
 	}
 	private void getUserCommand() {
 		String playerInput = null;
@@ -43,6 +48,7 @@ public class HemlockeGame {
 			System.exit(1);
 		}
 		playerCommand = playerInput.split(" ");
+		mapCommand.get(playerCommand[0]).create();
 	}
 	public void loginPlayer() {
 		String playerLogin = null;
@@ -81,10 +87,10 @@ public class HemlockeGame {
 		Player p2 = new Player();
 		Look look = new Look();
 		Go go = new Go();
-		GameObject r1 = new GameObject();
-		GameObject r2 = new GameObject();
-		GameObject c1 = new GameObject();
-		GameObject c2 = new GameObject();
+		Thing r1 = new Thing();
+		Thing r2 = new Thing();
+		Thing c1 = new Thing();
+		Thing c2 = new Thing();
 		
 		c1.setInfo("A troubled man in a black trenchcoat", "Hemlocke", "Character");
 		c1.setLocation(r1);

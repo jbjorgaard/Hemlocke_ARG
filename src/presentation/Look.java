@@ -1,28 +1,23 @@
 package presentation;
 
-import domain.GameObject;
+import domain.Thing;
 
 public class Look extends Command{
-	HemlockeGame g1;
-	GameObject currentObject;
-	GameObject location;
-	Look l1;
+	Game g1;
+	Thing currentObject;
+	Thing location;
 	String desc;
 	
-	public void setGame(HemlockeGame game) {
+	public void setGame(Game game) {
 		g1 = game;
 	}
 	@Override
-	public Look create(GameObject g) {
-		l1 = new Look();
-		currentObject = g;
-		location = currentObject.getLocation();
-		desc = location.getDescription();
-		System.out.println(desc);
-		return l1;
+	public Command create() {
+		Look l1 = new Look();
+		return l1;		
 	}
 	@Override
 	public void processCommand() {
-		
+		System.out.println("this shit is printed");
 	}
 }
