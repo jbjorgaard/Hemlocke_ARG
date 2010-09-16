@@ -18,10 +18,12 @@ public class Look extends Command{
 		l1.g1 = g1;
 		l1.character = a;
 		l1.command = s;
+		l1.location = a.getLocation();
+		l1.desc = l1.location.getDescription();
 		return l1;		
 	}
 	@Override
 	public void processCommand() {
-		System.out.println("this shit is printed");
+		System.out.println(desc);
 	}
 }

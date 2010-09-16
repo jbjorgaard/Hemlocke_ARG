@@ -29,7 +29,6 @@ public class Game {
 	public void startPlaying() {
 		boolean loggedIn = true;
 		
-		System.out.println("You are playing the character: " + character.getName());
 		System.out.println("You are in the " + character.getLocation().getName());
 		while(loggedIn) {
 			getUserCommand();
@@ -48,7 +47,7 @@ public class Game {
 			System.exit(1);
 		}
 		playerCommand = playerInput.split(" ");
-		mapCommand.get(playerCommand[0]).create(character, playerCommand);
+		mapCommand.get(playerCommand[0]).create(character, playerCommand).processCommand();
 	}
 	public void loginPlayer() {
 		String playerLogin = null;
