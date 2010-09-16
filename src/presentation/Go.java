@@ -1,11 +1,13 @@
 package presentation;
 
+import domain.Thing;
+
 
 public class Go extends Command{
 	Game g1;
 	
 	@Override
-	public Go create() {
+	public Go create(Thing a, String[] s) {
 		return null;
 	}
 	public void setGame(Game game) {

@@ -48,7 +48,7 @@ public class Game {
 			System.exit(1);
 		}
 		playerCommand = playerInput.split(" ");
-		mapCommand.get(playerCommand[0]).create();
+		mapCommand.get(playerCommand[0]).create(character, playerCommand);
 	}
 	public void loginPlayer() {
 		String playerLogin = null;
