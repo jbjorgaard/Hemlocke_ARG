@@ -99,6 +99,10 @@ public class Game {
 		c2.setLocation(r2);
 		r1.setInfo("An almost hidden archway, covered in years of unkept brambles.", "entry archway", "room");
 		r2.setInfo("In a clearing, in a very strange woods.", "forest clearing", "room");
+		r1.addContent(c1);
+		r2.addContent(c2);
+		r1.addLink("north", r2);
+		r2.addLink("south", r1);
 		p1.setPassword("peartree");
 		p2.setPassword("plumtree");
 		p1.setCharacter(c1);
