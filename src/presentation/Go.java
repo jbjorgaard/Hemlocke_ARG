@@ -25,7 +25,8 @@ public class Go extends Command{
 		g1 = game;
 	}
 	@Override
-	public void output() {
-		
+	public void output(String[] s) {
+		String[] direction = s;
+		System.out.println("You have gone " + direction[1] + ".");
 	}
 }

@@ -22,7 +22,7 @@ public class Look extends Command{
 		l1.desc = l1.location.getDescription();
 		return l1;		
 	}
-	public void output() {
-		System.out.println(desc);
+	public void output(String[] s) {
+		System.out.println("You are in " + desc);
 	}
 }
