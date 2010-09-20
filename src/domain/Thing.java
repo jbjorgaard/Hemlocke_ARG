@@ -31,16 +31,19 @@ public class Thing {
 	public void addContent(Thing t) {
 		contents.add(t);
 	}
-	public void removeContent (Thing t) {
+	public void removeContent(Thing t) {
 		contents.remove(t);
 	}
-	public void addLink (String s, Thing t) {
+	public void addLink(String s, Thing t) {
 		links.put(s, t);
 	}
-	public void removeLink (String s, Thing t) {
+	public void removeLink(String s, Thing t) {
 		links.remove(s);
 	}
-	public Thing getLink (String s) {
+	public Thing getLink(String s) {
 		return links.get(s);
+	}
+	public boolean containsLink(String s) {
+		return links.containsKey(s);
 	}
 }

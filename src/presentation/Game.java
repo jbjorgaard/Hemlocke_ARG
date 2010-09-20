@@ -49,7 +49,7 @@ public class Game {
 		playerCommand = playerInput.split(" ");
 		if(mapCommand.containsKey(playerCommand[0])) {
 			command = mapCommand.get(playerCommand[0]).process(character, playerCommand);
-			command.output(playerCommand);	
+			command.output(playerCommand);
 		} else {
 			System.out.println("That command is not recognized.");
 		}
