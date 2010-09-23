@@ -4,10 +4,6 @@ import domain.Thing;
 
 public class Look extends Command{
 	Game g1;
-	Thing location;
-	Thing character;
-	String[] command;
-	String desc;
 	
 	public void setGame(Game game) {
 		g1 = game;
@@ -16,13 +12,13 @@ public class Look extends Command{
 	public Command process(Thing a, String[] s) {
 		Look l1 = new Look();
 		l1.g1 = g1;
-		l1.character = a;
-		l1.command = s;
-		l1.location = a.getLocation();
-		l1.desc = l1.location.getDescription();
+		if(s.length > 1) {
+			a.getLocation().listContent(s[1]);
+		} else {
+			a.getLocation().describe();	
+		}
 		return l1;		
 	}
-	public void output(String[] s) {
-		System.out.println("You are in " + desc);
+	public void output(String[] s) {		
 	}
 }

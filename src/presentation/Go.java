@@ -13,12 +13,8 @@ public class Go extends Command{
 	@Override
 	public Go process(Thing t, String[] s) {
 		Go g = new Go();
-		g.command = s;
-		g.location = t.getLocation();
-		g.target = g.location.getLink(g.command[1]);
-		g.location.removeContent(t);
-		t.setLocation(g.target);
-		g.target.addContent(t);
+		g.g1 = g1;
+		t.moveTo(t, s);
 		return g;
 	}
 	public void setGame(Game game) {
@@ -26,7 +22,6 @@ public class Go extends Command{
 	}
 	@Override
 	public void output(String[] s) {
-		String[] direction = s;
-		System.out.println("You have gone " + direction[1] + ".");
+		System.out.println("You have gone " + s[1] + ".");
 	}
 }
