@@ -82,7 +82,7 @@ public class Game {
 					character = currentPlayer.getCharacter();
 					System.out.println("You have sucessfully logged into [" + character.getName() + "]");
 					System.out.println(character.getName() + " is " + character.getDescription());
-					System.out.println("You find yourself in " + character.getLocation().getDescription());
+					System.out.println("You find yourself " + character.getLocation().getDescription());
 					loggedOut = false;
 				} else {
 					System.out.println("Password not recognized.  Please try again.");
@@ -105,19 +105,21 @@ public class Game {
 		Thing m1 = new Thing();
 		Thing m2 = new Thing();
 		Thing i1 = new Thing();
+		Thing i2 = new Thing();
 		world = new Thing();
 		
 		c1.setInfo(m1r1, "a short, slender young woman who appears to be in her twenties.\nDressed in a black body glove, she wears a black backpack covered in pockets.", ", a young woman", "Nightshade", "character");
 		c2.setInfo(m1r2, "a grim, pale-skinned man standing about five and a half feet tall; dressed in all black including trenchcoat and fedora hat.", ", a man in black", "Hemlocke", "character");
-		m1r1.setInfo(m1, "an almost hidden archway, covered in years of unkept brambles.", " ", "archway", "room");
+		m1r1.setInfo(m1, "in an archway covered in years of unkept brambles.", " that is almost hidden", "an archway", "room");
 		m1r1.addLink("north", m1r2);
-		m1r2.setInfo(m1, "in a clearing, in a very strange woods.", " ", "forest clearing", "room");
+		m1r2.setInfo(m1, "in a clearing, in a very strange woods.", "", "forest clearing", "room");
 		m1r2.addLink("south", m1r1);
 		m1.setLocation(world);
 		m2.setLocation(world);
-		i1.setInfo(m1r1, "an ornate curved knife.", " ", "knife", "item");
+		i1.setInfo(i2, "an ornate curved knife.", " ", "knife", "item");
+		i2.setInfo(m1r1, "a plain looking box.", " ", "box", "item");
 		p1.setInfo("peartree", c1);
-		p2.setInfo("plumbtree", c2);
+		p2.setInfo("plumtree", c2);
 		world.addContent(m1);
 		world.addContent(m2);
 		mapLogin.put("jeremiah", p1);

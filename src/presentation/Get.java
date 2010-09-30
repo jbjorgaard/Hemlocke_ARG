@@ -14,10 +14,14 @@ public class Get extends Command {
 		Thing item;
 		
 		get.g1 = g1;
-		item = a.getLocation().identifyContent(s[1]);
-		a.getLocation().removeContent(item);
-		item.setLocation(a);
-		a.addContent(item);
+		if(a.getLocation().idTarget(s[1]) != null) {
+			item = a.getLocation().idTarget(s[1]);
+			a.getLocation().removeContent(item);
+			item.setLocation(a);
+			a.addContent(item);
+		} else {
+			System.out.println("Command not recognized.");
+		}
 		return get;
 	}
 

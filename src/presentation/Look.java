@@ -12,11 +12,36 @@ public class Look extends Command{
 	public Command process(Thing a, String[] s) {
 		Look l1 = new Look();
 		l1.g1 = g1;
-		if(s.length > 1) {
-			a.getLocation().listContent(s[1]);
+		String[] s1 = s;
+		String[] c1;
+		
+		if(s1.length > 1) {
+			if(a.getLocation().idTarget(s1[1]) != null) {
+				c1 = a.getLocation().idTarget(s1[1]).describe().split(";");
+				System.out.println("You look at [" + c1[0] + "]" + c1[1]);
+				if(c1.length > 2) {
+					System.out.println("Inside you see: ");
+					int x = 0;
+					while(x < (c1.length - 2)) {
+						System.out.println("[" + c1[x+2] + "]");
+						x = x + 1;
+					}
+				} 
+			} else {
+				System.out.println("Item not recognized");
+			}
 		} else {
-			a.getLocation().describe();	
+			System.out.println("You are in " + a.getLocation().getName() + a.getLocation().getShortDesc());
+			c1 = a.getLocation().describe().split(";");
+			if(c1.length > 2) {
+				int x = 0;
+				while(x < (c1.length - 2)) {
+					System.out.println("[" + c1[x+2] + "]");
+					x = x + 1;
+				}
+			}
 		}
+		
 		return l1;		
 	}
 	public void output(String[] s) {		
