@@ -9,7 +9,7 @@ public class Thing {
 	String type;
 	String shortdesc;
 	Thing location;
-	HashSet<Thing> contents = new HashSet<Thing>();
+	private HashSet<Thing> contents = new HashSet<Thing>();
 	HashMap<String, Thing> links = new HashMap<String, Thing>();
 	
 	public void setInfo(Thing l, String d, String sd, String n, String t) {
@@ -39,10 +39,10 @@ public class Thing {
 		return links.get(s);
 	}
 	public void addContent(Thing t) {
-		contents.add(t);
+		getContents().add(t);
 	}
 	public void removeContent(Thing t) {
-		contents.remove(t);
+		getContents().remove(t);
 	}
 	public void addLink(String s, Thing t) {
 		links.put(s, t);
@@ -68,7 +68,7 @@ public class Thing {
 	public Thing idTarget(String t) {
 		Thing target = null;
 		
-		for(Thing thing : contents) {
+		for(Thing thing : getContents()) {
 			if(thing.getName().equalsIgnoreCase(t)) {
 				target = thing;
 			}
@@ -78,10 +78,16 @@ public class Thing {
 	public String describe() {
 		String d = this.name.concat(";").concat(this.shortdesc).concat(";");
 		
-		for(Thing thing : contents) {
+		for(Thing thing : getContents()) {
 			d = d.concat(thing.getName()).concat(";");
 		}
 		
 		return d;
+	}
+	public void setContents(HashSet<Thing> contents) {
+		this.contents = contents;
+	}
+	public HashSet<Thing> getContents() {
+		return contents;
 	}
 }

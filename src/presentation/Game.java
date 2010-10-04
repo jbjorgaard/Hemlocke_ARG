@@ -98,6 +98,8 @@ public class Game {
 		Look look = new Look();
 		Go go = new Go();
 		Get get = new Get();
+		Drop drop = new Drop();
+		Empty empty = new Empty();
 		Thing m1r1 = new Thing();
 		Thing m1r2 = new Thing();
 		Thing c1 = new Thing();
@@ -127,7 +129,12 @@ public class Game {
 		mapCommand.put("look", look);
 		mapCommand.put("go", go);
 		mapCommand.put("get", get);
+		mapCommand.put("drop", drop);
+		mapCommand.put("empty", empty);
 		look.setGame(this);
 		go.setGame(this);
+		get.setGame(this);
+		drop.setGame(this);
+		empty.setGame(this);
 	}
 }

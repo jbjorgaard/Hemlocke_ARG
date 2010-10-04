@@ -27,7 +27,7 @@ public class Get extends Command {
 
 	@Override
 	public void output(String[] s) {
-		System.out.println("You got the " + s[1] + ".");
+		System.out.println("You picked up " + s[1] + ".");
 	}
 
 }
