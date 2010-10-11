@@ -1,4 +1,4 @@
-package presentation;
+package hello.presentation;
 
 public class PlayerHelp {
 

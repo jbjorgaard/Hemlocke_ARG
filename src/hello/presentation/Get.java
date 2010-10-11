@@ -1,6 +1,6 @@
-package presentation;
+package hello.presentation;
 
-import domain.Thing;
+import hello.domain.Thing;
 
 public class Get extends Command {
 	Game g1;

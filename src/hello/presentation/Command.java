@@ -1,7 +1,7 @@
-package presentation;
+package hello.presentation;
 
-import domain.Events;
-import domain.Thing;
+import hello.domain.Events;
+import hello.domain.Thing;
 
 public abstract class Command implements Events {
 	Thing actor;

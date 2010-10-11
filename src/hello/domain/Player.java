@@ -1,4 +1,4 @@
-package domain;
+package hello.domain;
 
 public class Player {
 	String password;

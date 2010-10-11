@@ -1,12 +1,11 @@
-package presentation;
+package hello.presentation;
 
+import hello.domain.Player;
+import hello.domain.Thing;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-
-import domain.Thing;
-import domain.Player;
 
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();

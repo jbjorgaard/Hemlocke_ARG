@@ -1,6 +1,6 @@
-package presentation;
+package hello.presentation;
 
-import domain.Thing;
+import hello.domain.Thing;
 
 public class Go extends Command{
 	Game g1;
