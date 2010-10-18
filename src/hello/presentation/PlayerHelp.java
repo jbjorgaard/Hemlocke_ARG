@@ -1,18 +1,20 @@
 package hello.presentation;
 
 public class PlayerHelp {
-
+	Game g1;
+	
+	public void setGame(Game game) {
+		g1 = game;
+	}
+	
 	public void help() {
-		System.out.println("");
-		System.out.println("LIST OF AVAILABLE COMMANDS");
-		System.out.println("look <left, right, up, down, forward, back>");
-		System.out.println("go <forward, left, right, back>");
-		System.out.println("get <itemname>");
-		System.out.println("drop <itemname>");
-		System.out.println("quit -logs out of character-");
-		System.out.println("exit -closes game client-");
-		System.out.println("");
-		
+		g1.uComm.add("LIST OF AVAILABLE COMMANDS");
+		g1.uComm.add("look <left, right, up, down, forward, back>");
+		g1.uComm.add("go <forward, left, right, back>");
+		g1.uComm.add("get <itemname>");
+		g1.uComm.add("drop <itemname>");
+		g1.uComm.add("quit -logs out of character-");
+		g1.uComm.add("exit -closes game client-");		
 	}
 
 }

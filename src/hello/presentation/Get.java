@@ -20,14 +20,16 @@ public class Get extends Command {
 			item.setLocation(a);
 			a.addContent(item);
 		} else {
-			System.out.println("Command not recognized.");
+			g1.uComm.add("Command not recognized.");
+//			System.out.println("Command not recognized.");
 		}
 		return get;
 	}
 
 	@Override
 	public void output(String[] s) {
-		System.out.println("You picked up " + s[1] + ".");
+		g1.uComm.add("You picked up " + s[1] + ".");
+//		System.out.println("You picked up " + s[1] + ".");
 	}
 
 }

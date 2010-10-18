@@ -5,11 +5,13 @@ import hello.domain.Thing;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	HashMap<String, Command> mapCommand = new HashMap<String, Command>();
+	ArrayList<String> uComm = new ArrayList<String>();
 	Player currentPlayer;
 	Thing character;
 	Thing world;
@@ -25,6 +27,13 @@ public class Game {
 			startPlaying();
 		}
 	}
+//	public void newRunGame(Game game) {
+//		
+//		while(true) {
+//	        printOutput(game.getOutput());
+//	        game.processInput(reader.readLine());
+//		}
+//	}
 	public void startPlaying() {
 		boolean loggedIn = true;
 		
@@ -32,12 +41,18 @@ public class Game {
 			getUserCommand();
 		}
 	}
+	public void getOutput() {
+		
+	}
 	private void getUserCommand() {
 		String playerInput = null;
 		String playerCommand[] = null;
 		Command command;
 		
-		System.out.println("What would you like to do?");
+		for(String str : uComm) {
+			System.out.println(str);
+		}
+		uComm.clear();
 		BufferedReader guc = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			playerInput = guc.readLine();
@@ -52,6 +67,7 @@ public class Game {
 		} else {
 			System.out.println("That command is not recognized.");
 		}
+		uComm.add("What would you like to do?");
 	}
 	public void loginPlayer() {
 		String playerLogin = null;
@@ -135,5 +151,6 @@ public class Game {
 		get.setGame(this);
 		drop.setGame(this);
 		empty.setGame(this);
+		uComm.add("What would you like to do?");
 	}
 }

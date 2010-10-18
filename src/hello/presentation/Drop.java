@@ -20,14 +20,16 @@ public class Drop extends Command {
 			item.setLocation(a.getLocation());
 			a.getLocation().addContent(item);
 		} else {
-			System.out.println("Command not recognized.");
+			g1.uComm.add("Command not recognized.");
+//			System.out.println("Command not recognized.");
 		}
 		return drop;
 	}
 
 	@Override
 	public void output(String[] s) {
-		System.out.println("You dropped " + s[1] + ".");		
+		g1.uComm.add("You dropped " + s[1] + ".");
+//		System.out.println("You dropped " + s[1] + ".");		
 	}
 
 }

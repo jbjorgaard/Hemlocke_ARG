@@ -22,14 +22,16 @@ public class Empty extends Command {
 				container.getLocation().addContent(thing);
 			}
 		} else {
-			System.out.println("Command not recognized.");
+			g1.uComm.add("Command not recognized.");
+//			System.out.println("Command not recognized.");
 		}
 		return empty;
 	}
 
 	@Override
 	public void output(String[] s) {
-		System.out.println("You have emptied " + s[1] + ".");		
+		g1.uComm.add("You have emptied " + s[1] + ".");
+//		System.out.println("You have emptied " + s[1] + ".");		
 	}
 
 }
