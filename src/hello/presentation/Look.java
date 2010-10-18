@@ -41,7 +41,7 @@ public class Look extends Command{
 			if(c1.length > 2) {
 				int x = 0;
 				while(x < (c1.length - 2)) {
-					System.out.println("[" + c1[x+2] + "]");
+					g1.uComm.add("[" + c1[x+2] + "]");
 					x = x + 1;
 				}
 			}
