@@ -21,7 +21,6 @@ public class Get extends Command {
 			a.addContent(item);
 		} else {
 			g1.uComm.add("Command not recognized.");
-//			System.out.println("Command not recognized.");
 		}
 		return get;
 	}
@@ -29,7 +28,6 @@ public class Get extends Command {
 	@Override
 	public void output(String[] s) {
 		g1.uComm.add("You picked up " + s[1] + ".");
-//		System.out.println("You picked up " + s[1] + ".");
 	}
 
 }

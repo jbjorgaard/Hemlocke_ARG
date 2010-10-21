@@ -23,6 +23,5 @@ public class Go extends Command{
 	@Override
 	public void output(String[] s) {
 		g1.uComm.add("You have gone " + s[1] + ".");
-//		System.out.println("You have gone " + s[1] + ".");
 	}
 }

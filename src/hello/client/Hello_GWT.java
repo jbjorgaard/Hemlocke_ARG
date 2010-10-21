@@ -15,16 +15,10 @@ public class Hello_GWT implements EntryPoint {
 	public void onModuleLoad() {
 		final DivElement output = DOM.getElementById("output").cast();
 		final TextBox input = TextBox.wrap(DOM.getElementById("input"));
-		final ListBox list = ListBox.wrap(DOM.getElementById("sel"));
 
 		input.addChangeHandler(new ChangeHandler() {
 			public void onChange(ChangeEvent event) {
 				output.setInnerHTML("INPUT: " + input.getValue());
-			}
-		});
-		list.addChangeHandler(new ChangeHandler() {
-			public void onChange(ChangeEvent event) {
-				output.setInnerHTML("BEEP: " + list.getValue(list.getSelectedIndex()));
 			}
 		});
 	}
