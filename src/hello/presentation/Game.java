@@ -16,8 +16,8 @@ public class Game {
 	Thing character;
 	Thing world;
 	boolean running = true;
-	boolean loggedIn = false;
 	BufferedReader rl = new BufferedReader(new InputStreamReader(System.in));
+	int mode = 0;
 	
 	public static void main(String[] args) {
 		Game game = new Game();
@@ -34,31 +34,20 @@ public class Game {
 		uComm.add(s);
 	}
 	public void runGame() {
+		printLoginPrompt();
 		while(running) {
-			while(loggedIn) {
 				try {
 					processInput(rl.readLine());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				printOutput();
 			}
-			login();
-		}
 	}
-	private void login() {
+	private void login(String readLine) {
 		String playerLogin = null;
 		String playerPassword = null;
-		
-		uComm.add("Please enter your username: ");
-		printOutput();
-		try {
-			playerLogin = rl.readLine();
-		} catch (IOException ioe) {
-			uComm.add("There was an error trying to read your command.");
-			printOutput();
-		}
+		playerLogin = readLine;
 		if(mapLogin.containsKey(playerLogin)) {
 			uComm.add("Please enter your password: ");
 			printOutput();
@@ -75,29 +64,39 @@ public class Game {
 				uComm.add(character.getName() + " is " + character.getDescription());
 				uComm.add("You find yourself " + character.getLocation().getDescription());
 				uComm.add("What would you like to do?");
-				loggedIn = true;
+				mode = 1;
 				printOutput();
 			} else {
 				uComm.add("Password not recognized.  Please try again.");
 				printOutput();
+				printLoginPrompt();
 			}
 		} else {
 			uComm.add("User not recognized.");
 			printOutput();
+			printLoginPrompt();
 		}
 		
+	}
+	public void printLoginPrompt() {
+		uComm.add("Please enter your username: ");
+		printOutput();
 	}
 	public void processInput(String readLine) {
 		String playerCommand[] = null;
 		Command command;
 		
-		playerCommand = readLine.split(" ");
-		if(mapCommand.containsKey(playerCommand[0])) {
-			command = mapCommand.get(playerCommand[0]).process(character, playerCommand);
-			command.output(playerCommand);
+		if(mode == 1) {
+			playerCommand = readLine.split(" ");
+			if(mapCommand.containsKey(playerCommand[0])) {
+				command = mapCommand.get(playerCommand[0]).process(character, playerCommand);
+				command.output(playerCommand);
+			} else {
+				uComm.add("That command is not recognized.");
+				printOutput();
+			}
 		} else {
-			uComm.add("That command is not recognized.");
-			printOutput();
+			login(readLine);
 		}
 	}
 	public void initializeGame() {
