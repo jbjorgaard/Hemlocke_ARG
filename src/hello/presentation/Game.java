@@ -2,28 +2,20 @@ package hello.presentation;
 
 import hello.domain.Player;
 import hello.domain.Thing;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	HashMap<String, Command> mapCommand = new HashMap<String, Command>();
-	ArrayList<String> uComm = new ArrayList<String>();
+	public ArrayList<String> uComm = new ArrayList<String>();
 	Player currentPlayer;
 	Thing character;
 	Thing world;
-	boolean running = true;
-	BufferedReader rl = new BufferedReader(new InputStreamReader(System.in));
+	public boolean running = true;
 	int mode = 0;
 	
-	public static void main(String[] args) {
-		Game game = new Game();
-		game.initializeGame();
-		game.runGame();
-	}
+	
 	public void printOutput() {
 		for(String str : uComm) {
 			System.out.println(str);
@@ -33,50 +25,30 @@ public class Game {
 	public void addOutput(String s) {
 		uComm.add(s);
 	}
-	public void runGame() {
-		printLoginPrompt();
-		while(running) {
-				try {
-					processInput(rl.readLine());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				printOutput();
-			}
-	}
+	
 	private void login(String readLine) {
-		String playerLogin = null;
-		String playerPassword = null;
-		playerLogin = readLine;
-		if(mapLogin.containsKey(playerLogin)) {
-			uComm.add("Please enter your password: ");
-			printOutput();
-			try {
-				playerPassword = rl.readLine();
-			} catch (IOException ioe) {
-				uComm.add("There was an error trying to read your command.");
-				printOutput();
-			}
-			currentPlayer = mapLogin.get(playerLogin);
-			if(playerPassword.equals(currentPlayer.getPassword())) {
-				character = currentPlayer.getCharacter();
-				uComm.add("You have sucessfully logged into [" + character.getName() + "]");
-				uComm.add(character.getName() + " is " + character.getDescription());
-				uComm.add("You find yourself " + character.getLocation().getDescription());
-				uComm.add("What would you like to do?");
-				mode = 1;
-				printOutput();
-			} else {
-				uComm.add("Password not recognized.  Please try again.");
-				printOutput();
-				printLoginPrompt();
-			}
+		if(mapLogin.containsKey(readLine)) {
+		currentPlayer = mapLogin.get(readLine);
+		mode = 2;
+		uComm.add("Please enter your password: ");
 		} else {
 			uComm.add("User not recognized.");
-			printOutput();
-			printLoginPrompt();
+			mode = 0;
 		}
 		
+	}
+	private void checkPassword(String readLine) {
+		if(readLine.equals(currentPlayer.getPassword())) {
+			character = currentPlayer.getCharacter();
+			uComm.add("You have sucessfully logged into [" + character.getName() + "]");
+			uComm.add(character.getName() + " is " + character.getDescription());
+			uComm.add("You find yourself " + character.getLocation().getDescription());
+			uComm.add("What would you like to do?");
+			mode = 1;
+		} else {
+			uComm.add("Password not recognized.  Please try again.");
+			mode = 0;
+		}
 	}
 	public void printLoginPrompt() {
 		uComm.add("Please enter your username: ");
@@ -93,8 +65,9 @@ public class Game {
 				command.output(playerCommand);
 			} else {
 				uComm.add("That command is not recognized.");
-				printOutput();
 			}
+		} else if(mode == 2){
+			checkPassword(readLine);
 		} else {
 			login(readLine);
 		}
