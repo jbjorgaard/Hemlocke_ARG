@@ -12,6 +12,7 @@ public class Hello_GWT implements EntryPoint {
 	public static Game g;
 	
 	public void onModuleLoad() {
+		initialize();
 		final DivElement output = DOM.getElementById("output").cast();
 		final TextBox input = TextBox.wrap(DOM.getElementById("input"));
 
