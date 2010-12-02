@@ -26,8 +26,13 @@ public class Drop extends Command {
 	}
 
 	@Override
-	public void output(String[] s) {
-		g1.uComm.add("You dropped " + s[1] + ".");		
+	public String generate(String[] s) {
+		return null;		
+	}
+	@Override
+	public Command parse(Thing a, String[] s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

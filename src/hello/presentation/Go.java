@@ -21,7 +21,13 @@ public class Go extends Command{
 		g1 = game;
 	}
 	@Override
-	public void output(String[] s) {
+	public String generate(String[] s) {
 		g1.uComm.add("You have gone " + s[1] + ".");
+		return null;
+	}
+	@Override
+	public Command parse(Thing a, String[] s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
