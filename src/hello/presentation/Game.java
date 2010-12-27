@@ -61,8 +61,9 @@ public class Game {
 		if(mode == 1) {
 			playerCommand = readLine.split(" ");
 			if(mapCommand.containsKey(playerCommand[0])) {
-				command = mapCommand.get(playerCommand[0]).process(character, playerCommand);
-				command.output(playerCommand);
+				command = mapCommand.get(playerCommand[0]).parse(character, playerCommand);
+				command.process();
+				command.generate();
 			} else {
 				uComm.add("That command is not recognized.");
 			}

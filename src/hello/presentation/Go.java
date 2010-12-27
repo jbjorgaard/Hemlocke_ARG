@@ -9,16 +9,29 @@ public class Go extends Command{
 	String[] command;
 	Thing target;
 	String desc;
+	Go go = new Go();
+	String[] userInput;
+	Thing actor;
 	
 	@Override
-	public Go process(Thing t, String[] s) {
-		Go g = new Go();
-		g.g1 = g1;
-		t.moveTo(t, s);
-		return g;
+	public Command parse(Thing a, String[] s) {
+		actor = a;
+		userInput = s;
+		return go;		
+	}
+	@Override
+	public Go process() {
+		go.g1 = g1;
+		
+		actor.moveTo(actor, userInput);
+		return go;
 	}
 	public void setGame(Game game) {
 		g1 = game;
+	}
+	@Override
+	public Command generate() {
+		return go;
 	}
 	@Override
 	public void output(String[] s) {
