@@ -1,11 +1,9 @@
 package hello.presentation;
 
-import java.util.HashSet;
 
-import hello.domain.Events;
 import hello.domain.Thing;
 
-public abstract class Command implements Events {
+public abstract class Command{
 	Thing actor;
 	
 	public abstract Command process();
