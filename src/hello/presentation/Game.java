@@ -57,12 +57,14 @@ public class Game {
 	public void processInput(String readLine) {
 		String playerCommand[] = null;
 		Command command;
-		
 		if(mode == 1) {
 			playerCommand = readLine.split(" ");
 			if(mapCommand.containsKey(playerCommand[0])) {
-				command = mapCommand.get(playerCommand[0]).process(character, playerCommand);
-				command.output(playerCommand);
+				command = mapCommand.get(playerCommand[0]);
+				command = command.parse(playerCommand);
+				uComm.add(command.v1);
+//				command = command.process(character);
+//				command.output();
 			} else {
 				uComm.add("That command is not recognized.");
 			}
@@ -71,15 +73,28 @@ public class Game {
 		} else {
 			login(readLine);
 		}
+//		if(mode == 1) {
+//			playerCommand = readLine.split(" ");
+//			if(mapCommand.containsKey(playerCommand[0])) {
+//				command = mapCommand.get(playerCommand[0]).process(character, playerCommand);
+//				command.output(playerCommand);
+//			} else {
+//				uComm.add("That command is not recognized.");
+//			}
+//		} else if(mode == 2){
+//			checkPassword(readLine);
+//		} else {
+//			login(readLine);
+//		}
 	}
 	public void initializeGame() {
 		Player p1 = new Player();
 		Player p2 = new Player();
-		Look look = new Look();
-		Go go = new Go();
-		Get get = new Get();
+//		Look look = new Look();
+//		Go go = new Go();
+//		Get get = new Get();
 		Drop drop = new Drop();
-		Empty empty = new Empty();
+//		Empty empty = new Empty();
 		Thing m1r1 = new Thing();
 		Thing m1r2 = new Thing();
 		Thing c1 = new Thing();
@@ -106,15 +121,15 @@ public class Game {
 		world.addContent(m2);
 		mapLogin.put("jeremiah", p1);
 		mapLogin.put("bill", p2);
-		mapCommand.put("look", look);
-		mapCommand.put("go", go);
-		mapCommand.put("get", get);
+//		mapCommand.put("look", look);
+//		mapCommand.put("go", go);
+//		mapCommand.put("get", get);
 		mapCommand.put("drop", drop);
-		mapCommand.put("empty", empty);
-		look.setGame(this);
-		go.setGame(this);
-		get.setGame(this);
+//		mapCommand.put("empty", empty);
+//		look.setGame(this);
+//		go.setGame(this);
+//		get.setGame(this);
 		drop.setGame(this);
-		empty.setGame(this);
+//		empty.setGame(this);
 	}
 }
