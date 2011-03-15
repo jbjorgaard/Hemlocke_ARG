@@ -1,6 +1,6 @@
 CURRENT
 =======
-* Add some current stuff
+* Command classes including errors so we can move onto brains
 
 ---
 
