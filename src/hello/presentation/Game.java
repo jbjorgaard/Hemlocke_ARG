@@ -61,7 +61,7 @@ public class Game {
 			playerCommand = readLine.split(" ");
 			if(mapCommand.containsKey(playerCommand[0])) {
 				command = mapCommand.get(playerCommand[0]);
-				command = command.parse(playerCommand);
+				command = command.copy().parse(playerCommand);
 				command.process(character);
 				command.output();
 			} else {
@@ -79,8 +79,9 @@ public class Game {
 		Look look = new Look();
 		Go go = new Go();
 		Get get = new Get();
-		Drop drop = new Drop();
+		Command drop = new Drop();
 		Empty empty = new Empty();
+		Error error = new Error();
 		Thing m1r1 = new Thing();
 		Thing m1r2 = new Thing();
 		Thing c1 = new Thing();
@@ -117,5 +118,6 @@ public class Game {
 		get.setGame(this);
 		drop.setGame(this);
 		empty.setGame(this);
+		error.setGame(this);
 	}
 }

@@ -66,14 +66,12 @@ public class Thing {
 		}
 	}
 	public Thing idTarget(String t) {
-		Thing target = null;
-		
 		for(Thing thing : getContents()) {
 			if(thing.getName().equalsIgnoreCase(t)) {
-				target = thing;
+				return thing;
 			}
 		}
-		return target;
+		return null;
 	}
 	public String describe() {
 		String d = this.name.concat(";").concat(this.shortdesc).concat(";");
@@ -89,5 +87,9 @@ public class Thing {
 	}
 	public HashSet<Thing> getContents() {
 		return contents;
+	}
+	@Override
+	public String toString() {
+		return describe();
 	}
 }

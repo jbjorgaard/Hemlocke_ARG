@@ -3,61 +3,31 @@ package hello.presentation;
 import hello.domain.Thing;
 
 public class Go extends Command{
-	Game g1;
-	Thing location;
-	Thing character;
-	String[] command;
 	Thing target;
-	String desc;
-	int x = 0;
-	
-	public void setGame(Game game) {
-		g1 = game;
-	}
+	String v1;
 	
 	@Override
 	public Command parse(String[] s) {
-		Go go = new Go();
-		go.g1 = g1;
-		
-		if(s.length == 2) {
-			go.desc = s[1];
-			if(g1.character.getLocation().getLink(s[1]) != null) {
-				go.target = g1.character.getLocation().getLink(s[1]);
-			} else {
-				//TODO generate error command
-				go.target = g1.character.getLocation();
-			}			
-		} else {
-			//TODO generate error command
-			go.target = g1.character.getLocation();
-		}
-		return go;
+		v1 = s[1];		
+		target = g1.character.getLocation().getLink(v1);
+		return this;
 	}
 	@Override
-	public void process(Thing a) {
-		if(target != a.getLocation()){
+	public Command process(Thing a) {
+		if(target != null){
 			a.getLocation().removeContent(a);
 			a.setLocation(target);
 			target.addContent(a);
-			x = 1;
+			return this;
 		} else {
-			x = 0;
+			Error e1 = new Error();
+			e1.g1 = g1;
+			e1.errorMessage = "You cannot go " + v1 + ".";
+			return e1;
 		}
 	}
 	@Override
 	public void output() {
-		if(x == 1) {
-			g1.uComm.add("You have gone " + desc );
-		} else {
-			g1.uComm.add("You were not able to go " + desc);
-		}
+			g1.uComm.add("You have gone to " + target.getName() );
 	}
-//	public void setGame(Game game) {
-//		g1 = game;
-//	}
-//	@Override
-//	public void output(String[] s) {
-//		g1.uComm.add("You have gone " + s[1] + ".");
-//	}
 }
