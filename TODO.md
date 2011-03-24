@@ -1,6 +1,7 @@
 CURRENT
 =======
-* Command classes including errors so we can move onto brains
+* Create 3 Brain Classes to handle different reactions
+* Modify command classes to propagate and identify themselves to brains
 
 ---
 
@@ -12,10 +13,12 @@ NEXT
 
 DONE
 ====
-* Add done stuff
+* Jeremiah 03-22-2011 Command classes including errors so we can move onto brains
 
 ---
 
 DEFERRED
 ========
-* Add some deferred stuff
+* Pilot command to remote control NPC's
+* Creation command to create things in game
+* Way to store everything to a database (save command and sql) 

@@ -62,8 +62,8 @@ public class Game {
 			if(mapCommand.containsKey(playerCommand[0])) {
 				command = mapCommand.get(playerCommand[0]);
 				command = command.copy().parse(playerCommand);
-				command.process(character);
-				command.output();
+				command = command.process(character);
+				propagate(command);
 			} else {
 				uComm.add("That command is not recognized.");
 			}
@@ -72,6 +72,9 @@ public class Game {
 		} else {
 			login(readLine);
 		}
+	}
+	private void propagate(Command command) {
+//TODO		currentPlayer.getCharacter().getBrain();
 	}
 	public void initializeGame() {
 		Player p1 = new Player();
@@ -82,6 +85,8 @@ public class Game {
 		Command drop = new Drop();
 		Empty empty = new Empty();
 		Error error = new Error();
+		GreedBrain b1 = new GreedBrain();
+		GreedBrain b2 = new GreedBrain();
 		Thing m1r1 = new Thing();
 		Thing m1r2 = new Thing();
 		Thing c1 = new Thing();
@@ -103,7 +108,9 @@ public class Game {
 		i1.setInfo(i2, " ", "an ornate curved knife.", "knife", "item");
 		i2.setInfo(m1r1, " ", "a plain looking box.", "box", "item");
 		p1.setInfo("peartree", c1);
+		c1.setBrain(b1);
 		p2.setInfo("plumtree", c2);
+		c2.setBrain(b2);
 		world.addContent(m1);
 		world.addContent(m2);
 		mapLogin.put("jeremiah", p1);
@@ -113,11 +120,13 @@ public class Game {
 		mapCommand.put("get", get);
 		mapCommand.put("drop", drop);
 		mapCommand.put("empty", empty);
-		look.setGame(this);
+		b1.setGame(this);
+		b2.setGame(this);
 		go.setGame(this);
 		get.setGame(this);
 		drop.setGame(this);
 		empty.setGame(this);
 		error.setGame(this);
+		look.setGame(this);
 	}
 }

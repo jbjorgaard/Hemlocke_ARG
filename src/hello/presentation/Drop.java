@@ -6,6 +6,7 @@ public class Drop extends Command {
 	String v1;
 	Thing item;
 	boolean succeeded = false;
+	GreedBrain greedBrain;
 	
 	@Override
 	public Command parse(String[] s) {
@@ -25,6 +26,8 @@ public class Drop extends Command {
 			return new Error(g1, "You do not have [" + v1 + "] to drop.");
 		}
 	}
+	
+	
 	@Override
 	public void output() {
 			g1.uComm.add("You dropped [" + item.getName() + "]");

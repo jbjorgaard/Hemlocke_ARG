@@ -1,5 +1,7 @@
 package hello.domain;
 
+import hello.presentation.Brain;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -8,6 +10,7 @@ public class Thing {
 	String name;
 	String type;
 	String shortdesc;
+	Brain brain;
 	Thing location;
 	private HashSet<Thing> contents = new HashSet<Thing>();
 	HashMap<String, Thing> links = new HashMap<String, Thing>();
@@ -91,5 +94,11 @@ public class Thing {
 	@Override
 	public String toString() {
 		return describe();
+	}
+	public void setBrain(Brain b) {
+		brain = b;
+	}
+	public Brain getBrain() {
+		return brain;
 	}
 }

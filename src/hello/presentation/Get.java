@@ -8,23 +8,21 @@ public class Get extends Command {
 	
 	@Override
 	public Command parse(String[] s) {
-		v1 = s[1];
 		item = g1.character.getLocation().idTarget(s[1]);
+		if(item == null){
+			Error e1 = new Error();
+			e1.g1 = g1;
+			e1.errorMessage = "There is no [" + s[1] + "] to get.";
+			return e1;
+		}
 		return this;
 	}
 	@Override
 	public Command process(Thing a) {
-		if(item != null) {
-			a.getLocation().removeContent(item);
-			item.setLocation(a);
-			a.addContent(item);
-			return this;
-		} else {
-			Error e1 = new Error();
-			e1.g1 = g1;
-			e1.errorMessage = "There is no [" + v1 + "] to get.";
-			return e1;
-		}
+		a.getLocation().removeContent(item);
+		item.setLocation(a);
+		a.addContent(item);
+		return this;
 	}
 
 	@Override
