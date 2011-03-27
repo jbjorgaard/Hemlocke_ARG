@@ -10,6 +10,7 @@ public abstract class Command implements Events, Cloneable {
 	public abstract Command process(Thing a);
 	public abstract Command parse(String[] s);
 	public abstract void output();
+	public abstract void notifyBrain(Brain brain);
 	
 	@Override
 	protected Object clone() {

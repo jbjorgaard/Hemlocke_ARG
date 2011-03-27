@@ -29,4 +29,8 @@ public class Empty extends Command {
 	public void output() {
 			g1.uComm.add("You emptied " + container + ".");
 	}
+	@Override
+	public void notifyBrain(Brain brain) {
+		brain.receiveCommand(this);
+	}
 }

@@ -7,4 +7,5 @@ public abstract class Brain {
 	public void receiveCommand(Get get){}
 	public void receiveCommand(Go go){}
 	public void receiveCommand(Look look){}
+	public void receiveCommand(Command command){}
 }

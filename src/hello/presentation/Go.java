@@ -30,4 +30,8 @@ public class Go extends Command{
 	public void output() {
 			g1.uComm.add("You have gone to " + target.getName() );
 	}
+	@Override
+	public void notifyBrain(Brain brain) {
+		brain.receiveCommand(this);
+	}
 }

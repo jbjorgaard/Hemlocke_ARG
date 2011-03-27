@@ -9,37 +9,31 @@ public class GreedBrain extends Brain {
 
 	@Override
 	public void receiveCommand(Drop drop) {
-		game.uComm.add("I want what you just dropped");
+		game.uComm.add("GreedBrain: You just dropped something.");
 	}
 
 	@Override
 	public void receiveCommand(Empty empty) {
-		// TODO Auto-generated method stub
-		
+		game.uComm.add("GreedBrain: You just emptied something.");
 	}
 
 	@Override
 	public void receiveCommand(Error error) {
-		// TODO Auto-generated method stub
-		
+		game.uComm.add("GreedBrain: You just made an error.");
 	}
 
 	@Override
 	public void receiveCommand(Get get) {
-		// TODO Auto-generated method stub
-		
+		game.uComm.add("GreedBrain: You just got something.");
 	}
 
 	@Override
 	public void receiveCommand(Go go) {
-		// TODO Auto-generated method stub
-		
+		game.uComm.add("GreedBrain: You just went somewhere.");
 	}
 
 	@Override
 	public void receiveCommand(Look look) {
-		// TODO Auto-generated method stub
-		
+		game.uComm.add("GreedBrain: You just looked at something.");
 	}
-	
 }

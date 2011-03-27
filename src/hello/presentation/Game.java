@@ -63,6 +63,7 @@ public class Game {
 				command = mapCommand.get(playerCommand[0]);
 				command = command.copy().parse(playerCommand);
 				command = command.process(character);
+				command.output();
 				propagate(command);
 			} else {
 				uComm.add("That command is not recognized.");
@@ -74,7 +75,7 @@ public class Game {
 		}
 	}
 	private void propagate(Command command) {
-//TODO		currentPlayer.getCharacter().getBrain();
+		command.notifyBrain(currentPlayer.getCharacter().getBrain());
 	}
 	public void initializeGame() {
 		Player p1 = new Player();

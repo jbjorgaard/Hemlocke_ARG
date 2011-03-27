@@ -29,4 +29,8 @@ public class Get extends Command {
 	public void output() {
 			g1.uComm.add("You got [" + item.getName() + "]");
 	}
+	@Override
+	public void notifyBrain(Brain brain) {
+		brain.receiveCommand(this);
+	}
 }

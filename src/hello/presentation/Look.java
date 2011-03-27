@@ -32,4 +32,8 @@ public class Look extends Command{
 //				g1.uComm.add("[" + thing.getName() + "]");
 //			}
 	}
+	@Override
+	public void notifyBrain(Brain brain) {
+		brain.receiveCommand(this);
+	}
 }

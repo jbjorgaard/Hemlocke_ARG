@@ -6,7 +6,6 @@ public class Drop extends Command {
 	String v1;
 	Thing item;
 	boolean succeeded = false;
-	GreedBrain greedBrain;
 	
 	@Override
 	public Command parse(String[] s) {
@@ -31,5 +30,9 @@ public class Drop extends Command {
 	@Override
 	public void output() {
 			g1.uComm.add("You dropped [" + item.getName() + "]");
+	}
+	@Override
+	public void notifyBrain(Brain brain) {
+		brain.receiveCommand(this);
 	}
 }
