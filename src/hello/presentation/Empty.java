@@ -17,11 +17,12 @@ public class Empty extends Command {
 		return this;
 	}
 	@Override
-	public Command process(Thing character) {
+	public Command process(Thing t) {
+		actor = t;
 		for(Thing thing : container.getContents()) {
 			container.removeContent(thing);
-			thing.setLocation(character.getLocation());
-			character.getLocation().addContent(thing);
+			thing.setLocation(actor.getLocation());
+			actor.getLocation().addContent(thing);
 		}
 		return this;
 	}

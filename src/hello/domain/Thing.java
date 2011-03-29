@@ -97,6 +97,7 @@ public class Thing {
 	}
 	public void setBrain(Brain b) {
 		brain = b;
+		b.owner = this;
 	}
 	public Brain getBrain() {
 		return brain;

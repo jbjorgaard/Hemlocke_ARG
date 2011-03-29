@@ -9,15 +9,16 @@ public class Go extends Command{
 	@Override
 	public Command parse(String[] s) {
 		v1 = s[1];		
-		target = g1.character.getLocation().getLink(v1);
+		target = g1.character.getLocation().getLink(s[1]);
 		return this;
 	}
 	@Override
-	public Command process(Thing a) {
+	public Command process(Thing t) {
+		actor = t;
 		if(target != null){
-			a.getLocation().removeContent(a);
-			a.setLocation(target);
-			target.addContent(a);
+			actor.getLocation().removeContent(actor);
+			actor.setLocation(target);
+			target.addContent(actor);
 			return this;
 		} else {
 			Error e1 = new Error();
@@ -28,7 +29,7 @@ public class Go extends Command{
 	}
 	@Override
 	public void output() {
-			g1.uComm.add("You have gone to " + target.getName() );
+			g1.uComm.add("You have gone to " + target);
 	}
 	@Override
 	public void notifyBrain(Brain brain) {

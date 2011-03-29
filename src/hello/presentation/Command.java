@@ -28,4 +28,8 @@ public abstract class Command implements Events, Cloneable {
 	public void setGame(Game game) {
 		g1 = game;
 	}
+	public void runCommand(Command c, Thing t) {
+		c.copy().process(t);
+		c.g1.propagate(this);		
+	}
 }

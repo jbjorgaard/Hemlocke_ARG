@@ -21,7 +21,8 @@ public class Look extends Command{
 		return this;
 	}
 	@Override
-	public Command process(Thing a) {
+	public Command process(Thing t) {
+		actor = t;
 		return this;
 	}
 	@Override

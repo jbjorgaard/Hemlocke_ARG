@@ -18,10 +18,11 @@ public class Get extends Command {
 		return this;
 	}
 	@Override
-	public Command process(Thing a) {
-		a.getLocation().removeContent(item);
-		item.setLocation(a);
-		a.addContent(item);
+	public Command process(Thing t) {
+		actor = t;
+		actor.getLocation().removeContent(item);
+		item.setLocation(actor);
+		actor.addContent(item);
 		return this;
 	}
 
@@ -32,5 +33,8 @@ public class Get extends Command {
 	@Override
 	public void notifyBrain(Brain brain) {
 		brain.receiveCommand(this);
+	}
+	public void setItem(Thing i) {
+		item = i;
 	}
 }

@@ -13,7 +13,7 @@ public class Error extends Command {
 	}
 
 	@Override
-	public Command process(Thing a) {
+	public Command process(Thing t) {
 		return this;
 	}
 

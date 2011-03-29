@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
-	HashMap<String, Command> mapCommand = new HashMap<String, Command>();
+	public HashMap<String, Command> mapCommand = new HashMap<String, Command>();
 	public ArrayList<String> uComm = new ArrayList<String>();
 	Player currentPlayer;
 	Thing character;
@@ -74,8 +74,15 @@ public class Game {
 			login(readLine);
 		}
 	}
-	private void propagate(Command command) {
-		command.notifyBrain(currentPlayer.getCharacter().getBrain());
+	public void propagate(Command command) {
+		for(Thing thing : command.actor.getLocation().getContents()) {
+			if(thing.getBrain() != null) {
+				command.notifyBrain(thing.getBrain());
+			}
+		}
+	}
+	public Command getCommand(String s) {
+		return mapCommand.get(s);
 	}
 	public void initializeGame() {
 		Player p1 = new Player();
@@ -83,15 +90,17 @@ public class Game {
 		Look look = new Look();
 		Go go = new Go();
 		Get get = new Get();
-		Command drop = new Drop();
+		Drop drop = new Drop();
 		Empty empty = new Empty();
 		Error error = new Error();
-		GreedBrain b1 = new GreedBrain();
-		GreedBrain b2 = new GreedBrain();
+		GreedBrain gb1 = new GreedBrain();
+		CharacterBrain pcb1 = new CharacterBrain();
+		CharacterBrain pcb2 = new CharacterBrain();
 		Thing m1r1 = new Thing();
 		Thing m1r2 = new Thing();
 		Thing c1 = new Thing();
 		Thing c2 = new Thing();
+		Thing npc001 = new Thing();
 		Thing m1 = new Thing();
 		Thing m2 = new Thing();
 		Thing i1 = new Thing();
@@ -109,9 +118,10 @@ public class Game {
 		i1.setInfo(i2, " ", "an ornate curved knife.", "knife", "item");
 		i2.setInfo(m1r1, " ", "a plain looking box.", "box", "item");
 		p1.setInfo("peartree", c1);
-		c1.setBrain(b1);
 		p2.setInfo("plumtree", c2);
-		c2.setBrain(b2);
+		npc001.setBrain(gb1);
+		c1.setBrain(pcb1);
+		c2.setBrain(pcb2);
 		world.addContent(m1);
 		world.addContent(m2);
 		mapLogin.put("jeremiah", p1);
@@ -121,8 +131,9 @@ public class Game {
 		mapCommand.put("get", get);
 		mapCommand.put("drop", drop);
 		mapCommand.put("empty", empty);
-		b1.setGame(this);
-		b2.setGame(this);
+		gb1.setGame(this);
+		pcb1.setGame(this);
+		pcb2.setGame(this);
 		go.setGame(this);
 		get.setGame(this);
 		drop.setGame(this);
