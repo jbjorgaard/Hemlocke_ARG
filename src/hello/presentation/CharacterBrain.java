@@ -5,10 +5,30 @@ public class CharacterBrain extends Brain {
 	
 	public void setGame(Game g) {
 		game = g;
-	}
-	
+	}	
 	@Override
 	public void receiveCommand(Look look) {
-		game.uComm.add("NightshadeBrain: You just looked at something.");
+		look.output(look.actor);
 	}
+	@Override
+	public void receiveCommand(Drop drop) {
+		drop.output(drop.actor);
+	}
+	public void receiveCommand(Get get) {
+		get.output(get.actor);
+	}
+	public void receiveCommand(Empty empty) {
+		empty.output(empty.actor);
+	}
+	public void receiveCommand(Go go) {
+		go.output(go.actor);
+	}
+	public void receiveCommand(Error error) {
+		error.output(error.actor);
+	}
+//	@Override
+//	public void receiveCommand(Command command) {
+//		game.uComm.add("Perceived command: " + command);
+//		super.receiveCommand(command);
+//	}
 }

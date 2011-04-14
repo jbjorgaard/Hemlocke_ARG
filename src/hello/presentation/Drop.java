@@ -9,29 +9,35 @@ public class Drop extends Command {
 	@Override
 	public Command parse(String[] s) {
 		item = g1.character.idTarget(s[1]);
-		return this;
-	}
-	@Override
-	public Command process(Thing t) {
-		actor = t;
 		succeeded = item != null;
-		if(succeeded) {
-			actor.removeContent(item);
-			item.setLocation(actor.getLocation());
-			actor.getLocation().addContent(item);
-			return this;
+		if(!succeeded) {
+			return new Error(g1, "You do not have [" + s[1] + "] to drop.", actor);
 		} else {
-			return new Error(g1, "You do not have [" + item + "] to drop.");
+			return this;
 		}
 	}
+	@Override
+	public Command process() {
+		actor.removeContent(item);
+		item.setLocation(actor.getLocation());
+		actor.getLocation().addContent(item);
+		return this;
+	}
 	
 	
 	@Override
-	public void output() {
-			g1.uComm.add("You dropped [" + item + "]");
+	public void output(Thing thing) {
+		if(thing == g1.character) {
+			g1.uComm.add("You dropped [" + item + "]");			
+		} else {
+			g1.uComm.add(thing.describe() + " dropped [" + item + "]");
+		}
 	}
 	@Override
 	public void notifyBrain(Brain brain) {
 		brain.receiveCommand(this);
+	}
+	public void runCommand(Thing i) {
+		
 	}
 }

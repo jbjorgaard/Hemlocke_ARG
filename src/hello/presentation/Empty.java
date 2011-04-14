@@ -9,16 +9,12 @@ public class Empty extends Command {
 	public Command parse(String[] s) {
 		container = g1.character.idTarget(s[1]);
 		if (container == null) {
-			Error e1 = new Error();
-			e1.g1 = g1;
-			e1.errorMessage = "There is no [" + s[1] + "] to empty.";
-			return e1;
+			return new Error(g1, "There is no [" + s[1] + "] to empty.", actor);
 		}
 		return this;
 	}
 	@Override
-	public Command process(Thing t) {
-		actor = t;
+	public Command process() {
 		for(Thing thing : container.getContents()) {
 			container.removeContent(thing);
 			thing.setLocation(actor.getLocation());
@@ -27,11 +23,18 @@ public class Empty extends Command {
 		return this;
 	}
 	@Override
-	public void output() {
-			g1.uComm.add("You emptied " + container + ".");
+	public void output(Thing thing) {
+		if(thing == g1.character) {
+			g1.uComm.add("You emptied " + container + ".");			
+		} else {
+			g1.uComm.add(thing.describe() + " emptied " + container + ".");
+		}
 	}
 	@Override
 	public void notifyBrain(Brain brain) {
 		brain.receiveCommand(this);
+	}
+	public void runCommand(Thing i) {
+		
 	}
 }

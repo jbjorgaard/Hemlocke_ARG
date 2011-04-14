@@ -4,35 +4,36 @@ import hello.domain.Thing;
 
 public class Go extends Command{
 	Thing target;
-	String v1;
 	
 	@Override
-	public Command parse(String[] s) {
-		v1 = s[1];		
+	public Command parse(String[] s) {	
 		target = g1.character.getLocation().getLink(s[1]);
-		return this;
-	}
-	@Override
-	public Command process(Thing t) {
-		actor = t;
-		if(target != null){
-			actor.getLocation().removeContent(actor);
-			actor.setLocation(target);
-			target.addContent(actor);
+		if(target == null){
+			return new Error(g1, "You cannot go " + s[1] + ".", actor);
+		} else {	
 			return this;
-		} else {
-			Error e1 = new Error();
-			e1.g1 = g1;
-			e1.errorMessage = "You cannot go " + v1 + ".";
-			return e1;
 		}
 	}
 	@Override
-	public void output() {
-			g1.uComm.add("You have gone to " + target);
+	public Command process() {
+		actor.getLocation().removeContent(actor);
+		actor.setLocation(target);
+		target.addContent(actor);
+		return this;
+	}
+	@Override
+	public void output(Thing thing) {
+		if(thing == g1.character) {
+			g1.uComm.add("You have gone to " + target + ".");	
+		} else {
+			g1.uComm.add(thing.describe() + " went to " + target + ".");
+		}
 	}
 	@Override
 	public void notifyBrain(Brain brain) {
 		brain.receiveCommand(this);
+	}
+	public void runCommand(Thing i) {
+		
 	}
 }

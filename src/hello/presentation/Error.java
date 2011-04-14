@@ -7,13 +7,14 @@ public class Error extends Command {
 	
 	public Error() {}
 
-	public Error(Game g1, String errorMessage) {
+	public Error(Game g1, String errorMessage, Thing actor) {
 		this.g1 = g1;
+		this.actor = actor;
 		this.errorMessage = errorMessage;
 	}
 
 	@Override
-	public Command process(Thing t) {
+	public Command process() {
 		return this;
 	}
 
@@ -24,11 +25,14 @@ public class Error extends Command {
 	}
 
 	@Override
-	public void output() {
+	public void output(Thing thing) {
 		g1.uComm.add(errorMessage);
 	}
 	@Override
 	public void notifyBrain(Brain brain) {
 		brain.receiveCommand(this);
+	}
+	public void runCommand(Thing i) {
+		
 	}
 }

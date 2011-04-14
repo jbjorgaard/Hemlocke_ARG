@@ -3,32 +3,31 @@ package hello.presentation;
 import hello.domain.Thing;
 
 public class Get extends Command {
-	Thing item;
+	private Thing item;
 	String v1;
 	
 	@Override
 	public Command parse(String[] s) {
 		item = g1.character.getLocation().idTarget(s[1]);
 		if(item == null){
-			Error e1 = new Error();
-			e1.g1 = g1;
-			e1.errorMessage = "There is no [" + s[1] + "] to get.";
-			return e1;
+			return new Error(g1, "There is no [" + s[1] + "] to get.", actor);
 		}
 		return this;
 	}
 	@Override
-	public Command process(Thing t) {
-		actor = t;
+	public Command process() {
 		actor.getLocation().removeContent(item);
 		item.setLocation(actor);
 		actor.addContent(item);
 		return this;
 	}
-
 	@Override
-	public void output() {
-			g1.uComm.add("You got [" + item.getName() + "]");
+	public void output(Thing thing) {
+		if(thing == g1.character) {
+			g1.uComm.add("You got " + item + ".");			
+		} else {
+			g1.uComm.add(thing.describe() + " You got [" + item.getName() + "]");
+		}
 	}
 	@Override
 	public void notifyBrain(Brain brain) {
@@ -36,5 +35,9 @@ public class Get extends Command {
 	}
 	public void setItem(Thing i) {
 		item = i;
+	}
+	public void runCommand(Thing i) {
+		setItem(i);
+		g1.commandQueue.add(this);
 	}
 }

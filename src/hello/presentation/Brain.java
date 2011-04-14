@@ -11,7 +11,9 @@ public abstract class Brain {
 	public void receiveCommand(Get get){}
 	public void receiveCommand(Go go){}
 	public void receiveCommand(Look look){}
-	public void receiveCommand(Command command){}
+	public void receiveCommand(Command command){
+		command.notifyBrain(this);
+	}
 	public void setGame(Game game) {
 		g1 = game;
 	}

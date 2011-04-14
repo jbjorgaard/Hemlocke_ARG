@@ -9,6 +9,7 @@ public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	public HashMap<String, Command> mapCommand = new HashMap<String, Command>();
 	public ArrayList<String> uComm = new ArrayList<String>();
+	public ArrayList<Command> commandQueue = new ArrayList<Command>();
 	Player currentPlayer;
 	Thing character;
 	Thing world;
@@ -61,9 +62,8 @@ public class Game {
 			playerCommand = readLine.split(" ");
 			if(mapCommand.containsKey(playerCommand[0])) {
 				command = mapCommand.get(playerCommand[0]);
-				command = command.copy().parse(playerCommand);
-				command = command.process(character);
-				command.output();
+				command = command.copy(character).parse(playerCommand);
+				command = command.process();
 				propagate(command);
 			} else {
 				uComm.add("That command is not recognized.");
@@ -77,9 +77,14 @@ public class Game {
 	public void propagate(Command command) {
 		for(Thing thing : command.actor.getLocation().getContents()) {
 			if(thing.getBrain() != null) {
-				command.notifyBrain(thing.getBrain());
+				thing.getBrain().receiveCommand(command);
 			}
 		}
+		while(!commandQueue.isEmpty()) {
+			propagate(commandQueue.remove(0).process());			
+		}
+//		** process and propagate any accumulated commands
+//		** keep processing until there are no more accumulated commands
 	}
 	public Command getCommand(String s) {
 		return mapCommand.get(s);
@@ -109,6 +114,7 @@ public class Game {
 		
 		c1.setInfo(m1r1, "a short, slender young woman who appears to be in her twenties.\nDressed in a black body glove, she wears a black backpack covered in pockets.", ", a young woman", "Nightshade", "character");
 		c2.setInfo(m1r2, "a grim, pale-skinned man standing about five and a half feet tall; dressed in all black including trenchcoat and fedora hat.", ", a man in black", "Hemlocke", "character");
+		npc001.setInfo(m1r1, "A greedy little puke", "Greedy Puke", "PunkDaddy", "character");
 		m1r1.setInfo(m1, "in an archway covered in years of unkept brambles.", " that is almost hidden", "an archway", "room");
 		m1r1.addLink("north", m1r2);
 		m1r2.setInfo(m1, "in a clearing, in a very strange woods.", "", "forest clearing", "room");
