@@ -98,6 +98,7 @@ public class Game {
 		Drop drop = new Drop();
 		Empty empty = new Empty();
 		Error error = new Error();
+//		Say say = new Say();
 		GreedBrain gb1 = new GreedBrain();
 		CharacterBrain pcb1 = new CharacterBrain();
 		CharacterBrain pcb2 = new CharacterBrain();
@@ -137,6 +138,7 @@ public class Game {
 		mapCommand.put("get", get);
 		mapCommand.put("drop", drop);
 		mapCommand.put("empty", empty);
+//		mapCommand.put("say", say);
 		gb1.setGame(this);
 		pcb1.setGame(this);
 		pcb2.setGame(this);
@@ -146,5 +148,6 @@ public class Game {
 		empty.setGame(this);
 		error.setGame(this);
 		look.setGame(this);
+//		say.setGame(this);
 	}
 }
