@@ -26,6 +26,9 @@ public class CharacterBrain extends Brain {
 	public void receiveCommand(Error error) {
 		error.output(error.actor);
 	}
+	public void receiveCommand(Say say) {
+		say.output(say.actor);
+	}
 //	@Override
 //	public void receiveCommand(Command command) {
 //		game.uComm.add("Perceived command: " + command);

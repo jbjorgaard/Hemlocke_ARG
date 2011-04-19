@@ -77,35 +77,32 @@ public class Game {
 	public void propagate(Command command) {
 		for(Thing thing : command.actor.getLocation().getContents()) {
 			if(thing.getBrain() != null) {
-				thing.getBrain().receiveCommand(command);
+				thing.getBrain().dispatchCommand(command);
 			}
 		}
 		while(!commandQueue.isEmpty()) {
 			propagate(commandQueue.remove(0).process());			
 		}
-//		** process and propagate any accumulated commands
-//		** keep processing until there are no more accumulated commands
 	}
 	public Command getCommand(String s) {
 		return mapCommand.get(s);
 	}
 	public void initializeGame() {
 		Player p1 = new Player();
-		Player p2 = new Player();
 		Look look = new Look();
 		Go go = new Go();
 		Get get = new Get();
 		Drop drop = new Drop();
 		Empty empty = new Empty();
 		Error error = new Error();
-//		Say say = new Say();
+		Say say = new Say();
 		GreedBrain gb1 = new GreedBrain();
+		FriendlyBrain fb1 = new FriendlyBrain();
 		CharacterBrain pcb1 = new CharacterBrain();
-		CharacterBrain pcb2 = new CharacterBrain();
 		Thing m1r1 = new Thing();
 		Thing m1r2 = new Thing();
 		Thing c1 = new Thing();
-		Thing c2 = new Thing();
+		Thing npc002 = new Thing();
 		Thing npc001 = new Thing();
 		Thing m1 = new Thing();
 		Thing m2 = new Thing();
@@ -114,7 +111,7 @@ public class Game {
 		world = new Thing();
 		
 		c1.setInfo(m1r1, "a short, slender young woman who appears to be in her twenties.\nDressed in a black body glove, she wears a black backpack covered in pockets.", ", a young woman", "Nightshade", "character");
-		c2.setInfo(m1r2, "a grim, pale-skinned man standing about five and a half feet tall; dressed in all black including trenchcoat and fedora hat.", ", a man in black", "Hemlocke", "character");
+		npc002.setInfo(m1r2, "a grim, pale-skinned man standing about five and a half feet tall; dressed in all black including trenchcoat and fedora hat.", ", a man in black", "Hemlocke", "character");
 		npc001.setInfo(m1r1, "A greedy little puke", "Greedy Puke", "PunkDaddy", "character");
 		m1r1.setInfo(m1, "in an archway covered in years of unkept brambles.", " that is almost hidden", "an archway", "room");
 		m1r1.addLink("north", m1r2);
@@ -125,29 +122,27 @@ public class Game {
 		i1.setInfo(i2, " ", "an ornate curved knife.", "knife", "item");
 		i2.setInfo(m1r1, " ", "a plain looking box.", "box", "item");
 		p1.setInfo("peartree", c1);
-		p2.setInfo("plumtree", c2);
-		npc001.setBrain(gb1);
 		c1.setBrain(pcb1);
-		c2.setBrain(pcb2);
+		npc001.setBrain(gb1);
+		npc002.setBrain(fb1);
 		world.addContent(m1);
 		world.addContent(m2);
 		mapLogin.put("jeremiah", p1);
-		mapLogin.put("bill", p2);
 		mapCommand.put("look", look);
 		mapCommand.put("go", go);
 		mapCommand.put("get", get);
 		mapCommand.put("drop", drop);
 		mapCommand.put("empty", empty);
-//		mapCommand.put("say", say);
+		mapCommand.put("say", say);
 		gb1.setGame(this);
+		fb1.setGame(this);
 		pcb1.setGame(this);
-		pcb2.setGame(this);
 		go.setGame(this);
 		get.setGame(this);
 		drop.setGame(this);
 		empty.setGame(this);
 		error.setGame(this);
 		look.setGame(this);
-//		say.setGame(this);
+		say.setGame(this);
 	}
 }
