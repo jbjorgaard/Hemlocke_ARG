@@ -1,36 +1,45 @@
 package hello.domain;
 
 import hello.presentation.Brain;
+import hello.presentation.Game;
 
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class Thing {
+	Long key;
 	String description;
 	String name;
 	String type;
 	String shortdesc;
 	Brain brain;
-	Thing location;
-	private HashSet<Thing> contents = new HashSet<Thing>();
-	HashMap<String, Thing> links = new HashMap<String, Thing>();
+	Long location;
+	private HashSet<Long> contents = new HashSet<Long>();
+	private HashMap<String, Thing> links = new HashMap<String, Thing>();
 	
 	public void setInfo(Thing l, String d, String sd, String n, String t) {
-		this.setLocation(l);
-		l.addContent(this);
+		this.location = l.getId();
+		l.addContent(this.key);
 		description = d;
 		shortdesc = sd;
 		name = n;
 		type = t;
 	}
+	public void setId() {
+		key = Game.currentGame.nextId();
+		Game.currentGame.objectId.put(key, this);
+	}
+	public long getId() {
+		return key;
+	}
 	public void setLocation(Thing l) {
-		location = l;
+		location = l.getId();
 	}
 	public String getName() {
 		return name;
 	}
 	public Thing getLocation() {
-		return location;
+		return Game.currentGame.getThing(location);
 	}
 	public String getDescription() {
 		return description;		
@@ -39,7 +48,7 @@ public class Thing {
 		return shortdesc;
 	}
 	public Thing getLink(String s) {
-		return links.get(s);
+		return getLinks().get(s);
 	}
 	public void addContent(Thing t) {
 		getContents().add(t);
@@ -48,13 +57,13 @@ public class Thing {
 		getContents().remove(t);
 	}
 	public void addLink(String s, Thing t) {
-		links.put(s, t);
+		getLinks().put(s, t);
 	}
 	public void removeLink(String s, Thing t) {
-		links.remove(s);
+		getLinks().remove(s);
 	}
 	public boolean containsLink(String s) {
-		return links.containsKey(s);
+		return getLinks().containsKey(s);
 	}
 	public void moveTo(Thing t, String[] s) {
 		Thing target;
@@ -85,10 +94,10 @@ public class Thing {
 		
 		return d;
 	}
-	public void setContents(HashSet<Thing> contents) {
+	public void setContents(HashSet<Long> contents) {
 		this.contents = contents;
 	}
-	public HashSet<Thing> getContents() {
+	public HashSet<Long> getContents() {
 		return contents;
 	}
 	@Override
@@ -101,5 +110,11 @@ public class Thing {
 	}
 	public Brain getBrain() {
 		return brain;
+	}
+	void setLinks(HashMap<String, Thing> links) {
+		this.links = links;
+	}
+	HashMap<String, Thing> getLinks() {
+		return links;
 	}
 }

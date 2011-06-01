@@ -3,6 +3,7 @@ package hello.presentation;
 import hello.domain.Thing;
 
 public abstract class Brain {
+	Long key;
 	public Thing owner;
 	protected Game g1;
 	public void receiveCommand(Drop drop){}
@@ -17,5 +18,12 @@ public abstract class Brain {
 	}
 	public void setGame(Game game) {
 		g1 = game;
+	}
+	public void setId() {
+		key = Game.currentGame.nextId();
+		Game.currentGame.objectId.put(key, this);
+	}
+	public long getId() {
+		return key;
 	}
 }

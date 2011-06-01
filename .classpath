@@ -12,5 +12,15 @@
 			<attribute name="javadoc_location" value="file:/home/jeremiah/Apps/eclipse-3.6.0/plugins/com.google.gwt.eclipse.sdkbundle.2.0.4_2.0.4.v201006301309/gwt-2.0.4/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/sqlite.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Hemlocke_ARG/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/mybatis-3.0.5-SNAPSHOT.jar" sourcepath="lib/mybatis-3.0.5-SNAPSHOT-src.zip">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Hemlocke_ARG/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
