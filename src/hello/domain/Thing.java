@@ -4,7 +4,7 @@ import hello.presentation.Brain;
 import hello.presentation.Game;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
 
 public class Thing {
 	Long key;
@@ -14,12 +14,12 @@ public class Thing {
 	String shortdesc;
 	Brain brain;
 	Long location;
-	private HashSet<Long> contents = new HashSet<Long>();
+	private Map<Long, Thing> contents = new HashMap<Long, Thing>();
 	private HashMap<String, Thing> links = new HashMap<String, Thing>();
 	
 	public void setInfo(Thing l, String d, String sd, String n, String t) {
 		this.location = l.getId();
-		l.addContent(this.key);
+		l.addContent(this);
 		description = d;
 		shortdesc = sd;
 		name = n;
@@ -50,12 +50,6 @@ public class Thing {
 	public Thing getLink(String s) {
 		return getLinks().get(s);
 	}
-	public void addContent(Thing t) {
-		getContents().add(t);
-	}
-	public void removeContent(Thing t) {
-		getContents().remove(t);
-	}
 	public void addLink(String s, Thing t) {
 		getLinks().put(s, t);
 	}
@@ -65,22 +59,10 @@ public class Thing {
 	public boolean containsLink(String s) {
 		return getLinks().containsKey(s);
 	}
-	public void moveTo(Thing t, String[] s) {
-		Thing target;
-		
-		if(t.type.equalsIgnoreCase("character")) {
-			target = t.getLocation().getLink(s[1]);
-			t.getLocation().removeContent(t);
-			t.setLocation(target);
-			target.addContent(t);
-		}else if(t.type.equalsIgnoreCase("item")) {
-			target = t;
-		}
-	}
 	public Thing idTarget(String t) {
-		for(Thing thing : getContents()) {
-			if(thing.getName().equalsIgnoreCase(t)) {
-				return thing;
+		for(Map.Entry<Long, Thing> entry : contents.entrySet()) {
+			if(entry.getValue().getName().equalsIgnoreCase(t)) {
+				return entry.getValue();
 			}
 		}
 		return null;
@@ -88,16 +70,22 @@ public class Thing {
 	public String describe() {
 		String d = this.name.concat(";").concat(this.shortdesc).concat(";");
 		
-		for(Thing thing : getContents()) {
-			d = d.concat(thing.getName()).concat(";");
+		for(Map.Entry<Long, Thing> entry : contents.entrySet()) {
+			d = d.concat(entry.getValue().getName()).concat(";");
 		}
 		
 		return d;
 	}
-	public void setContents(HashSet<Long> contents) {
+	public void addContent(Thing t) {
+		getContents().put(t.key, t);
+	}
+	public void removeContent(Thing t) {
+		getContents().remove(t.key);
+	}
+	public void setContents(HashMap<Long, Thing> contents) {
 		this.contents = contents;
 	}
-	public HashSet<Long> getContents() {
+	public Map<Long, Thing> getContents() {
 		return contents;
 	}
 	@Override

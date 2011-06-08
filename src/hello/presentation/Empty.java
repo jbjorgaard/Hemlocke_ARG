@@ -1,5 +1,7 @@
 package hello.presentation;
 
+import java.util.Map;
+
 import hello.domain.Thing;
 
 public class Empty extends Command {
@@ -15,10 +17,10 @@ public class Empty extends Command {
 	}
 	@Override
 	public Command process() {
-		for(Thing thing : container.getContents()) {
-			container.removeContent(thing);
-			thing.setLocation(actor.getLocation());
-			actor.getLocation().addContent(thing);
+		for(Map.Entry<Long, Thing> entry : container.getContents().entrySet()) {
+			container.removeContent(entry.getValue());
+			entry.getValue().setLocation(actor.getLocation());
+			actor.getLocation().addContent(entry.getValue());
 		}
 		return this;
 	}

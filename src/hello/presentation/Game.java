@@ -4,6 +4,7 @@ import hello.domain.Player;
 import hello.domain.Thing;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
@@ -97,9 +98,9 @@ public class Game {
 		}
 	}
 	public void propagate(Command command) {
-		for(Thing thing : command.actor.getLocation().getContents()) {
-			if(thing.getBrain() != null) {
-				thing.getBrain().dispatchCommand(command);
+		for(Map.Entry<Long, Thing> entry : command.actor.getLocation().getContents().entrySet()) {
+			if(entry.getValue().getBrain() != null) {
+				entry.getValue().getBrain().dispatchCommand(command);
 			}
 		}
 		while(!commandQueue.isEmpty()) {
