@@ -4,7 +4,10 @@ import hello.presentation.Brain;
 import hello.presentation.Game;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+
+import org.apache.bcel.generic.NEW;
 
 public class Thing {
 	Long key;
@@ -14,7 +17,8 @@ public class Thing {
 	String shortdesc;
 	Brain brain;
 	Long location;
-	private Map<Long, Thing> contents = new HashMap<Long, Thing>();
+//	private Map<Long, Thing> contents = new HashMap<Long, Thing>();
+	private HashSet<Long> contents = new HashSet<Long>();
 	private HashMap<String, Thing> links = new HashMap<String, Thing>();
 	
 	public void setInfo(Thing l, String d, String sd, String n, String t) {
@@ -77,16 +81,23 @@ public class Thing {
 		return d;
 	}
 	public void addContent(Thing t) {
-		getContents().put(t.key, t);
+		contents.add(t.key);
 	}
 	public void removeContent(Thing t) {
 		getContents().remove(t.key);
 	}
-	public void setContents(HashMap<Long, Thing> contents) {
+	public void setContents(HashSet<Long> contents) {
 		this.contents = contents;
 	}
-	public Map<Long, Thing> getContents() {
-		return contents;
+	public HashMap<String, Thing> getContents() {
+		HashMap<String, Thing> contentObjects = new HashMap<String, Thing>();
+		
+		for(Long id : contents) {
+			if(Game.currentGame.objectId.containsKey(id)) {
+				contentObjects.put(Game.currentGame.getThing(id).getName(), Game.currentGame.getThing(id));
+			}
+		}
+		return contentObjects;
 	}
 	@Override
 	public String toString() {

@@ -9,7 +9,7 @@ import java.util.Map;
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	public HashMap<String, Command> mapCommand = new HashMap<String, Command>();
-	public HashMap<Long, Object> objectId = new HashMap<Long, Object>();
+	public Map<Long, Thing> objectId = new HashMap<Long, Thing>();
 	public ArrayList<String> uComm = new ArrayList<String>();
 	public ArrayList<Command> commandQueue = new ArrayList<Command>();
 	Player currentPlayer;
