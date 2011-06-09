@@ -1,0 +1,35 @@
+!SESSION 2011-06-09 07:58:37.738 -----------------------------------------------
+eclipse.buildId=I20100608-0911
+java.version=1.6.0_20
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os linux -ws gtk -arch x86 -product org.eclipse.epp.package.php.product
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2011-06-09 07:58:52.996
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle.2.0.3_2.0.3.v201006230916
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2011-06-09 07:58:53.242
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle.1.3.7_1.3.7.v201008311427
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2011-06-09 07:58:53.646
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle.2.0.4_2.0.4.v201006301309
+
+!ENTRY org.eclipse.php.debug.core 4 4 2011-06-09 07:59:02.969
+!MESSAGE The debug port 10000 is in use. Please select a different port for the debugger.
+
+!ENTRY org.eclipse.php.debug.core 4 4 2011-06-09 07:59:02.970
+!MESSAGE The debug port 9000 is in use. Please select a different port for the debugger.
+!SESSION 2011-06-09 07:59:07.866 -----------------------------------------------
+eclipse.buildId=I20100608-0911
+java.version=1.6.0_20
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os linux -ws gtk -arch x86 -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.php.debug.core 4 4 2011-06-09 07:59:16.096
+!MESSAGE The debug port 10000 is in use. Please select a different port for the debugger.
+
+!ENTRY org.eclipse.php.debug.core 4 4 2011-06-09 07:59:16.108
+!MESSAGE The debug port 9000 is in use. Please select a different port for the debugger.
