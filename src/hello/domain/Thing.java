@@ -5,6 +5,7 @@ import hello.presentation.Game;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class Thing {
 	Long key;
@@ -12,10 +13,10 @@ public class Thing {
 	String name;
 	String type;
 	String shortdesc;
-	Brain brain;
+	Long brain;
 	Long location;
 	private HashSet<Long> contents = new HashSet<Long>();
-	private HashMap<String, Thing> links = new HashMap<String, Thing>();
+	private HashSet<Long> links = new HashSet<Long>();
 	
 	public void setInfo(Thing l, String d, String sd, String n, String t) {
 		this.location = l.getId();
@@ -47,8 +48,8 @@ public class Thing {
 	public String getShortDesc() {
 		return shortdesc;
 	}
-	public Thing getLink(String s) {
-		return getLinks().get(s);
+	public Thing getLink(Long s) {
+		return (Thing) Game.currentGame.objectId.get(s);
 	}
 	public void addContent(Thing t) {
 		getContents().add(t);
@@ -56,14 +57,14 @@ public class Thing {
 	public void removeContent(Thing t) {
 		getContents().remove(t);
 	}
-	public void addLink(String s, Thing t) {
-		getLinks().put(s, t);
+	public void addLink(Long l) {
+		getLinks().put(l);
 	}
 	public void removeLink(String s, Thing t) {
 		getLinks().remove(s);
 	}
-	public boolean containsLink(String s) {
-		return getLinks().containsKey(s);
+	public boolean containsLink(Long l) {
+		return getLinks().contains(l);
 	}
 	public void moveTo(Thing t, String[] s) {
 		Thing target;
@@ -97,24 +98,31 @@ public class Thing {
 	public void setContents(HashSet<Long> contents) {
 		this.contents = contents;
 	}
-	public HashSet<Long> getContents() {
-		return contents;
+	public HashSet<Thing> getContents() {
+		HashSet<Thing> currentContents = new HashSet<Thing>();
+		
+		for(Long cKey : contents) {
+			if(Game.currentGame.objectId.containsKey(cKey)) {
+				currentContents.add(Game.currentGame.getThing(cKey));
+			}
+		}
+		return currentContents;
 	}
 	@Override
 	public String toString() {
 		return describe();
 	}
 	public void setBrain(Brain b) {
-		brain = b;
+		brain = b.getId();
 		b.owner = this;
 	}
-	public Brain getBrain() {
+	public Long getBrain() {
 		return brain;
 	}
-	void setLinks(HashMap<String, Thing> links) {
+	void setLinks(HashSet<Long> links) {
 		this.links = links;
 	}
-	HashMap<String, Thing> getLinks() {
+	HashSet<Long> getLinks() {
 		return links;
 	}
 }
