@@ -3,7 +3,7 @@ package hello.presentation;
 import hello.domain.Thing;
 
 public abstract class Brain {
-	Long key;
+	public Long key;
 	public Thing owner;
 	protected Game g1;
 	public void receiveCommand(Drop drop){}
