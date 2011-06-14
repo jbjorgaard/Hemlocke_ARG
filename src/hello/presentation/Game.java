@@ -9,6 +9,7 @@ public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	public HashMap<String, Command> mapCommand = new HashMap<String, Command>();
 	public HashMap<Long, Object> objectId = new HashMap<Long, Object>();
+	public HashMap<Long, Thing> linkId = new HashMap<Long, Thing>();
 	public ArrayList<String> uComm = new ArrayList<String>();
 	public ArrayList<Command> commandQueue = new ArrayList<Command>();
 	Player currentPlayer;
@@ -139,9 +140,9 @@ public class Game {
 		npc001.setInfo(m1r1, "A greedy little puke", "Greedy Puke", "PunkDaddy", "character");
 		npc003.setInfo(m1r1, "a nosey guy", ", this guy is nosey", "Cirano", "character");
 		m1r1.setInfo(m1, "in an archway covered in years of unkept brambles.", " that is almost hidden", "an archway", "room");
-		m1r1.addLink("north", m1r2);
+		m1r1.addLink("north", m1r2.getId());
 		m1r2.setInfo(m1, "in a clearing, in a very strange woods.", "", "forest clearing", "room");
-		m1r2.addLink("south", m1r1);
+		m1r2.addLink("south", m1r1.getId());
 		m1.setLocation(world);
 		m2.setLocation(world);
 		i1.setInfo(i2, " ", "an ornate curved knife.", "knife", "item");

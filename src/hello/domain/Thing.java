@@ -16,7 +16,7 @@ public class Thing {
 	Long brain;
 	Long location;
 	private HashSet<Long> contents = new HashSet<Long>();
-	private HashSet<Long> links = new HashSet<Long>();
+	private HashMap<String, Long> links = new HashMap<String, Long>();
 	
 	public void setInfo(Thing l, String d, String sd, String n, String t) {
 		this.location = l.getId();
@@ -51,20 +51,20 @@ public class Thing {
 	public Thing getLink(Long s) {
 		return (Thing) Game.currentGame.objectId.get(s);
 	}
-	public void addContent(Thing t) {
-		getContents().add(t);
+	public void addContent(Long k) {
+		contents.add(k);
 	}
 	public void removeContent(Thing t) {
 		getContents().remove(t);
 	}
-	public void addLink(Long l) {
-		getLinks().put(l);
+	public void addLink(String s, Long l) {
+		getLinks().put(s, l);
 	}
 	public void removeLink(String s, Thing t) {
 		getLinks().remove(s);
 	}
 	public boolean containsLink(Long l) {
-		return getLinks().contains(l);
+		return getLinks().containsKey(l);
 	}
 	public void moveTo(Thing t, String[] s) {
 		Thing target;
@@ -119,10 +119,10 @@ public class Thing {
 	public Long getBrain() {
 		return brain;
 	}
-	void setLinks(HashSet<Long> links) {
+	void setLinks(HashMap<String, Long> links) {
 		this.links = links;
 	}
-	HashSet<Long> getLinks() {
+	HashMap<String, Long> getLinks() {
 		return links;
 	}
 }
