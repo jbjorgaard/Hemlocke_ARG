@@ -5,7 +5,6 @@ import hello.presentation.Game;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class Thing {
 	Long key;
@@ -28,7 +27,7 @@ public class Thing {
 	}
 	public void setId() {
 		key = Game.currentGame.nextId();
-		Game.currentGame.objectId.put(key, this);
+		Game.currentGame.thingId.put(key, this);
 	}
 	public long getId() {
 		return key;
@@ -48,8 +47,8 @@ public class Thing {
 	public String getShortDesc() {
 		return shortdesc;
 	}
-	public Thing getLink(Long s) {
-		return (Thing) Game.currentGame.objectId.get(s);
+	public Thing getLink(String s) {
+		return Game.currentGame.linkId.get(links.get(s));
 	}
 	public void addContent(Long k) {
 		contents.add(k);
@@ -65,18 +64,6 @@ public class Thing {
 	}
 	public boolean containsLink(Long l) {
 		return getLinks().containsKey(l);
-	}
-	public void moveTo(Thing t, String[] s) {
-		Thing target;
-		
-		if(t.type.equalsIgnoreCase("character")) {
-			target = t.getLocation().getLink(s[1]);
-			t.getLocation().removeContent(t);
-			t.setLocation(target);
-			target.addContent(t);
-		}else if(t.type.equalsIgnoreCase("item")) {
-			target = t;
-		}
 	}
 	public Thing idTarget(String t) {
 		for(Thing thing : getContents()) {
@@ -102,7 +89,7 @@ public class Thing {
 		HashSet<Thing> currentContents = new HashSet<Thing>();
 		
 		for(Long cKey : contents) {
-			if(Game.currentGame.objectId.containsKey(cKey)) {
+			if(Game.currentGame.thingId.containsKey(cKey)) {
 				currentContents.add(Game.currentGame.getThing(cKey));
 			}
 		}
@@ -116,8 +103,8 @@ public class Thing {
 		brain = b.getId();
 		b.owner = this;
 	}
-	public Long getBrain() {
-		return brain;
+	public Brain getBrain() {
+		return Game.currentGame.brainId.get(brain);
 	}
 	void setLinks(HashMap<String, Long> links) {
 		this.links = links;

@@ -8,8 +8,9 @@ import java.util.HashMap;
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
 	public HashMap<String, Command> mapCommand = new HashMap<String, Command>();
-	public HashMap<Long, Object> objectId = new HashMap<Long, Object>();
+	public HashMap<Long, Thing> thingId = new HashMap<Long, Thing>();
 	public HashMap<Long, Thing> linkId = new HashMap<Long, Thing>();
+	public HashMap<Long, Brain> brainId = new HashMap<Long, Brain>();
 	public ArrayList<String> uComm = new ArrayList<String>();
 	public ArrayList<Command> commandQueue = new ArrayList<Command>();
 	Player currentPlayer;
@@ -30,16 +31,22 @@ public class Game {
 		return currentId++;
 	}
 	public void putThing(Thing t) {
-		objectId.put(t.getId(), t);
+		thingId.put(t.getId(), t);
 	}
 	public Thing getThing(long id) {
-		return (Thing) objectId.get(id);
+		return thingId.get(id);
 	}
 	public void putBrain(Brain b) {
-		objectId.put(b.getId(), b);
+		brainId.put(b.getId(), b);
 	}
 	public Brain getBrain(long id) {
-		return (Brain) objectId.get(id);
+		return brainId.get(id);
+	}
+	public void putLink(Thing l) {
+		linkId.put(l.getId(), l);
+	}
+	public Thing getLinkThing(long id) {
+		return linkId.get(id);
 	}
 	public void printOutput() {
 		for(String str : uComm) {
@@ -152,8 +159,8 @@ public class Game {
 		npc001.setBrain(gb1);
 		npc002.setBrain(fb1);
 		npc003.setBrain(nb1);
-		world.addContent(m1);
-		world.addContent(m2);
+		world.addContent(m1.getId());
+		world.addContent(m2.getId());
 		mapLogin.put("jeremiah", p1);
 		mapCommand.put("look", look);
 		mapCommand.put("go", go);

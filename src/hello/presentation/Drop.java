@@ -20,7 +20,7 @@ public class Drop extends Command {
 	public Command process() {
 		actor.removeContent(item);
 		item.setLocation(actor.getLocation());
-		actor.getLocation().addContent(item);
+		actor.getLocation().addContent(item.getId());
 		return this;
 	}
 	

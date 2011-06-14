@@ -18,7 +18,7 @@ public class Go extends Command{
 	public Command process() {
 		actor.getLocation().removeContent(actor);
 		actor.setLocation(target);
-		target.addContent(actor);
+		target.addContent(actor.getId());
 		return this;
 	}
 	@Override

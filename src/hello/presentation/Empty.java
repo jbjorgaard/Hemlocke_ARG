@@ -18,7 +18,7 @@ public class Empty extends Command {
 		for(Thing thing : container.getContents()) {
 			container.removeContent(thing);
 			thing.setLocation(actor.getLocation());
-			actor.getLocation().addContent(thing);
+			actor.getLocation().addContent(thing.getId());
 		}
 		return this;
 	}

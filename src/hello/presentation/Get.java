@@ -18,7 +18,7 @@ public class Get extends Command {
 	public Command process() {
 		actor.getLocation().removeContent(item);
 		item.setLocation(actor);
-		actor.addContent(item);
+		actor.addContent(item.getId());
 		return this;
 	}
 	@Override

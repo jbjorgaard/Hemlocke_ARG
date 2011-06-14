@@ -21,7 +21,7 @@ public abstract class Brain {
 	}
 	public void setId() {
 		key = Game.currentGame.nextId();
-		Game.currentGame.objectId.put(key, this);
+		Game.currentGame.brainId.put(key, this);
 	}
 	public long getId() {
 		return key;
