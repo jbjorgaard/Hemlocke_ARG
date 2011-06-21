@@ -8,9 +8,9 @@ public class Get extends Command {
 	
 	@Override
 	public Command parse(String[] s) {
-		item = g1.character.getLocation().idTarget(s[1]);
+		item = getGame().character.getLocation().idTarget(s[1]);
 		if(item == null){
-			return new Error(g1, "There is no [" + s[1] + "] to get.", actor);
+			return new Error(getGame(), "There is no [" + s[1] + "] to get.", actor);
 		}
 		return this;
 	}
@@ -23,10 +23,10 @@ public class Get extends Command {
 	}
 	@Override
 	public void output(Thing thing) {
-		if(thing == g1.character) {
-			g1.uComm.add("You got " + item + ".");			
+		if(thing == getGame().character) {
+			getGame().uComm.add("You got " + item + ".");			
 		} else {
-			g1.uComm.add(thing.describe() + " You got [" + item.getName() + "]");
+			getGame().uComm.add(thing.describe() + " You got [" + item.getName() + "]");
 		}
 	}
 	@Override
@@ -38,6 +38,6 @@ public class Get extends Command {
 	}
 	public void runCommand(Thing i) {
 		setItem(i);
-		g1.commandQueue.add(this);
+		getGame().commandQueue.add(this);
 	}
 }

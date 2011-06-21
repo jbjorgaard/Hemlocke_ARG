@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import hello.presentation.*;
 
 public class Hello_GWT implements EntryPoint {
-	public static Game g;
 	
 	public void onModuleLoad() {
 		initialize();
@@ -19,8 +18,8 @@ public class Hello_GWT implements EntryPoint {
 		output.setInnerHTML("<br>Please enter username");
 		input.addChangeHandler(new ChangeHandler() {
 			public void onChange(ChangeEvent event) {
-				g.processInput(input.getValue());
-				for(String str : g.uComm){
+				Game.currentGame.processInput(input.getValue());
+				for(String str : Game.currentGame.uComm){
 					output.setInnerHTML(output.getInnerHTML() + str);
 				}
 			}
@@ -30,7 +29,6 @@ public class Hello_GWT implements EntryPoint {
 		
 	}
 	public void initialize() {
-		g = new Game();
-		g.initializeGame();
+		Game.currentGame.initializeGame();
 	}
 }

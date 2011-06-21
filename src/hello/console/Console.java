@@ -7,22 +7,21 @@ import java.io.InputStreamReader;
 import hello.presentation.Game;
 
 public class Console {
-	static Game game = new Game();
 	static BufferedReader rl = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) {
-		game.initializeGame();
+		Game.currentGame.initializeGame();
 		runGame();
 	}
 	public static void runGame() {
-		game.printLoginPrompt();
-		while(game.running) {
+		Game.currentGame.printLoginPrompt();
+		while(Game.currentGame.running) {
 				try {
-					game.processInput(rl.readLine());
+					Game.currentGame.processInput(rl.readLine());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				game.printOutput();
+				Game.currentGame.printOutput();
 			}
 	}
 }

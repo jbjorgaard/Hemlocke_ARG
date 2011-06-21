@@ -5,7 +5,6 @@ import hello.domain.Thing;
 
 public abstract class Command implements Events, Cloneable {
 	Thing actor;
-	protected Game g1;
 	
 	public abstract Command process();
 	public abstract Command parse(String[] s);
@@ -24,11 +23,10 @@ public abstract class Command implements Events, Cloneable {
 	public Command copy(Thing actor) {
 		Command copy = (Command)clone();
 		
-		copy.g1 = g1;
 		copy.actor = actor;
 		return copy;
 	}
-	public void setGame(Game game) {
-		g1 = game;
+	protected Game getGame() {
+		return Game.currentGame;
 	}
 }

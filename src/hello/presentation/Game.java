@@ -19,14 +19,11 @@ public class Game {
 	long currentId = 0;
 	public boolean running = true;
 	int mode = 0;
-	public static Game currentGame;
+	public static Game currentGame = new Game();
 	
 	public static Game getGame() {
 		return currentGame;
 	}
-	public Game() {
-		currentGame = this;
-	}	
 	public long nextId() {
 		return currentId++;
 	}
@@ -140,17 +137,6 @@ public class Game {
 		NoseyBrain nb1 = new NoseyBrain();
 		CharacterBrain pcb1 = new CharacterBrain();
 		
-		gb1.setGame(this);
-		fb1.setGame(this);
-		pcb1.setGame(this);
-		nb1.setGame(this);
-		go.setGame(this);
-		get.setGame(this);
-		drop.setGame(this);
-		empty.setGame(this);
-		error.setGame(this);
-		look.setGame(this);
-		say.setGame(this);
 		world.setId();
 		r1.setId();
 		currentGame.linkId.put(r1.getId(), r1);
@@ -168,12 +154,18 @@ public class Game {
 		currentGame.thingId.put(i1.getId(), i1);
 		i2.setId();
 		currentGame.thingId.put(i2.getId(), i2);
+		pcb1.setId();
+		currentGame.brainId.put(pcb1.getId(), pcb1);
 		gb1.setId();
 		currentGame.brainId.put(gb1.getId(), gb1);
 		fb1.setId();
 		currentGame.brainId.put(fb1.getId(), fb1);
 		nb1.setId();
 		currentGame.brainId.put(nb1.getId(), nb1);
+		c1.setBrain(pcb1);
+		npc001.setBrain(gb1);
+		npc002.setBrain(fb1);
+		npc003.setBrain(nb1);
 		
 		c1.setInfo(r1, "a short, slender young woman who appears to be in her twenties.\nDressed in a black body glove, she wears a black backpack covered in pockets.", ", a young woman", "Nightshade", "character");
 		npc002.setInfo(r2, "a grim, pale-skinned man standing about five and a half feet tall; dressed in all black including trenchcoat and fedora hat.", ", a man in black", "Hemlocke", "character");
@@ -186,10 +178,6 @@ public class Game {
 		i1.setInfo(i2, " ", "an ornate curved knife.", "knife", "item");
 		i2.setInfo(r1, " ", "a plain looking box.", "box", "item");
 		p1.setInfo("peartree", c1);
-		c1.setBrain(pcb1);
-		npc001.setBrain(gb1);
-		npc002.setBrain(fb1);
-		npc003.setBrain(nb1);
 		world.addContent(r1.getId());
 		world.addContent(r2.getId());
 		mapLogin.put("jeremiah", p1);

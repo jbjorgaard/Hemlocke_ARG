@@ -23,7 +23,7 @@ public class Say extends Command{
 	}
 	@Override
 	public void output(Thing thing) {
-		g1.uComm.add(spoke);
+		getGame().uComm.add(spoke);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Say extends Command{
 
 	@Override
 	public void runCommand(Thing i) {
-		g1.commandQueue.add(this);
+		getGame().commandQueue.add(this);
 	}
 	public void setSpoke(String s){
 		spoke = s;

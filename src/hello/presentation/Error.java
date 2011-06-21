@@ -8,7 +8,6 @@ public class Error extends Command {
 	public Error() {}
 
 	public Error(Game g1, String errorMessage, Thing actor) {
-		this.g1 = g1;
 		this.actor = actor;
 		this.errorMessage = errorMessage;
 	}
@@ -26,7 +25,7 @@ public class Error extends Command {
 
 	@Override
 	public void output(Thing thing) {
-		g1.uComm.add(errorMessage);
+		getGame().uComm.add(errorMessage);
 	}
 	@Override
 	public void notifyBrain(Brain brain) {

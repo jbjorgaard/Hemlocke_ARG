@@ -25,9 +25,12 @@ public class Thing {
 		name = n;
 		type = t;
 	}
+	protected Game getGame() {
+		return Game.currentGame;
+	}
 	public void setId() {
-		key = Game.currentGame.nextId();
-		Game.currentGame.thingId.put(key, this);
+		key = getGame().nextId();
+		getGame().thingId.put(key, this);
 	}
 	public long getId() {
 		return key;
@@ -39,7 +42,7 @@ public class Thing {
 		return name;
 	}
 	public Thing getLocation() {
-		return Game.currentGame.getThing(location);
+		return getGame().getThing(location);
 	}
 	public String getDescription() {
 		return description;		
@@ -48,7 +51,7 @@ public class Thing {
 		return shortdesc;
 	}
 	public Thing getLink(String s) {
-		return Game.currentGame.linkId.get(links.get(s));
+		return getGame().linkId.get(links.get(s));
 	}
 	public void addContent(Long k) {
 		contents.add(k);
@@ -89,8 +92,8 @@ public class Thing {
 		HashSet<Thing> currentContents = new HashSet<Thing>();
 		
 		for(Long cKey : contents) {
-			if(Game.currentGame.thingId.containsKey(cKey)) {
-				currentContents.add(Game.currentGame.getThing(cKey));
+			if(getGame().thingId.containsKey(cKey)) {
+				currentContents.add(getGame().getThing(cKey));
 			}
 		}
 		return currentContents;
@@ -101,9 +104,10 @@ public class Thing {
 	}
 	public void setBrain(Brain b) {
 		brain = b.getId();
+		b.owner = this.getId();
 	}
 	public Brain getBrain() {
-		return Game.currentGame.brainId.get(brain);
+		return getGame().brainId.get(brain);
 	}
 	void setLinks(HashMap<String, Long> links) {
 		this.links = links;

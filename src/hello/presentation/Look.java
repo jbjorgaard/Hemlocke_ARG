@@ -11,12 +11,12 @@ public class Look extends Command{
 	@Override
 	public Command parse(String[] s) {
 		if(s.length == 2) {
-			target = g1.character.getLocation().idTarget(s[1]);
+			target = getGame().character.getLocation().idTarget(s[1]);
 			if(target == null) {
-				return new Error(g1,  "There was no " + s[1] + " to look at.", actor);
+				return new Error(getGame(),  "There was no " + s[1] + " to look at.", actor);
 			}
 		} else {
-			target = g1.character.getLocation();
+			target = getGame().character.getLocation();
 		}
 		return this;
 	}
@@ -26,11 +26,11 @@ public class Look extends Command{
 	}
 	@Override
 	public void output(Thing thing) {
-		if(thing == g1.character) {
-			g1.uComm.add("You look at [" + target.getName() + "] and see: ");
-			g1.uComm.add(target.describe());			
+		if(thing == getGame().character) {
+			getGame().uComm.add("You look at [" + target.getName() + "] and see: ");
+			getGame().uComm.add(target.describe());			
 		} else {
-			g1.uComm.add(thing.describe() + "looked at " + target.describe());
+			getGame().uComm.add(thing.describe() + "looked at " + target.describe());
 		}
 	}
 	@Override

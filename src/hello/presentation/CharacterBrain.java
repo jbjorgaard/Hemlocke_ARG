@@ -1,11 +1,7 @@
 package hello.presentation;
 
 public class CharacterBrain extends Brain {
-	Game game;
 	
-	public void setGame(Game g) {
-		game = g;
-	}	
 	@Override
 	public void receiveCommand(Look look) {
 		look.output(look.actor);
@@ -29,9 +25,4 @@ public class CharacterBrain extends Brain {
 	public void receiveCommand(Say say) {
 		say.output(say.actor);
 	}
-//	@Override
-//	public void receiveCommand(Command command) {
-//		game.uComm.add("Perceived command: " + command);
-//		super.receiveCommand(command);
-//	}
 }

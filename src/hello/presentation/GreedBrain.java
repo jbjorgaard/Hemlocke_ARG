@@ -3,7 +3,7 @@ package hello.presentation;
 public class GreedBrain extends Brain {
 	public void receiveCommand(Drop drop) {
 		Get g;
-		g = (Get) g1.getCommand("get").copy(owner);
+		g = (Get) getGame().getCommand("get").copy(getGame().getThing(owner));
 		g.runCommand(drop.item);		
 	}
 	public void receiveCommand(Empty empty) {}

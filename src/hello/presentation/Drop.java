@@ -8,10 +8,10 @@ public class Drop extends Command {
 	
 	@Override
 	public Command parse(String[] s) {
-		item = g1.character.idTarget(s[1]);
+		item = getGame().character.idTarget(s[1]);
 		succeeded = item != null;
 		if(!succeeded) {
-			return new Error(g1, "You do not have [" + s[1] + "] to drop.", actor);
+			return new Error(getGame(), "You do not have [" + s[1] + "] to drop.", actor);
 		} else {
 			return this;
 		}
@@ -27,10 +27,10 @@ public class Drop extends Command {
 	
 	@Override
 	public void output(Thing thing) {
-		if(thing == g1.character) {
-			g1.uComm.add("You dropped [" + item + "]");			
+		if(thing == getGame().character) {
+			getGame().uComm.add("You dropped [" + item + "]");			
 		} else {
-			g1.uComm.add(thing.describe() + " dropped [" + item + "]");
+			getGame().uComm.add(thing.describe() + " dropped [" + item + "]");
 		}
 	}
 	@Override

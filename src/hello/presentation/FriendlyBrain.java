@@ -7,9 +7,9 @@ public class FriendlyBrain extends Brain {
 	public void receiveCommand(Empty empty) {}
 	public void receiveCommand(Go go) {
 		Say s;
-		s = (Say) g1.getCommand("say").copy(owner);
-		s.setSpoke(owner.getName() + " says, Hi, how are you?");
-		s.runCommand(owner);
+		s = (Say) getGame().getCommand("say").copy(getGame().getThing(owner));
+		s.setSpoke(getGame().getThing(owner).getName() + " says, Hi, how are you?");
+		s.runCommand(getGame().getThing(owner));
 	}
 	public void receiveCommand(Error error) {}
 	public void receiveCommand(Say say) {}

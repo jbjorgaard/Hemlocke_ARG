@@ -7,9 +7,9 @@ public class Empty extends Command {
 
 	@Override
 	public Command parse(String[] s) {
-		container = g1.character.idTarget(s[1]);
+		container = getGame().character.idTarget(s[1]);
 		if (container == null) {
-			return new Error(g1, "There is no [" + s[1] + "] to empty.", actor);
+			return new Error(getGame(), "There is no [" + s[1] + "] to empty.", actor);
 		}
 		return this;
 	}
@@ -24,10 +24,10 @@ public class Empty extends Command {
 	}
 	@Override
 	public void output(Thing thing) {
-		if(thing == g1.character) {
-			g1.uComm.add("You emptied " + container + ".");			
+		if(thing == getGame().character) {
+			getGame().uComm.add("You emptied " + container + ".");			
 		} else {
-			g1.uComm.add(thing.describe() + " emptied " + container + ".");
+			getGame().uComm.add(thing.describe() + " emptied " + container + ".");
 		}
 	}
 	@Override

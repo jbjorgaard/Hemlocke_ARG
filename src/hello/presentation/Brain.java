@@ -1,11 +1,8 @@
 package hello.presentation;
 
-import hello.domain.Thing;
-
 public abstract class Brain {
 	public Long key;
-	public Thing owner;
-	protected Game g1;
+	public long owner;
 	public void receiveCommand(Drop drop){}
 	public void receiveCommand(Empty empty){}
 	public void receiveCommand(Error error){}
@@ -16,14 +13,14 @@ public abstract class Brain {
 	public void dispatchCommand(Command command){
 		command.notifyBrain(this);
 	}
-	public void setGame(Game game) {
-		g1 = game;
-	}
 	public void setId() {
-		key = g1.nextId();
-		g1.brainId.put(key, this);
+		key = getGame().nextId();
+		getGame().brainId.put(key, this);
 	}
 	public long getId() {
 		return key;
+	}
+	protected Game getGame() {
+		return Game.currentGame;
 	}
 }
