@@ -140,6 +140,17 @@ public class Game {
 		NoseyBrain nb1 = new NoseyBrain();
 		CharacterBrain pcb1 = new CharacterBrain();
 		
+		gb1.setGame(this);
+		fb1.setGame(this);
+		pcb1.setGame(this);
+		nb1.setGame(this);
+		go.setGame(this);
+		get.setGame(this);
+		drop.setGame(this);
+		empty.setGame(this);
+		error.setGame(this);
+		look.setGame(this);
+		say.setGame(this);
 		world.setId();
 		r1.setId();
 		currentGame.linkId.put(r1.getId(), r1);
@@ -188,16 +199,5 @@ public class Game {
 		mapCommand.put("drop", drop);
 		mapCommand.put("empty", empty);
 		mapCommand.put("say", say);
-		gb1.setGame(this);
-		fb1.setGame(this);
-		pcb1.setGame(this);
-		nb1.setGame(this);
-		go.setGame(this);
-		get.setGame(this);
-		drop.setGame(this);
-		empty.setGame(this);
-		error.setGame(this);
-		look.setGame(this);
-		say.setGame(this);
 	}
 }

@@ -20,8 +20,8 @@ public abstract class Brain {
 		g1 = game;
 	}
 	public void setId() {
-		key = Game.currentGame.nextId();
-		Game.currentGame.brainId.put(key, this);
+		key = g1.nextId();
+		g1.brainId.put(key, this);
 	}
 	public long getId() {
 		return key;
