@@ -77,10 +77,11 @@ public class Thing {
 		return null;
 	}
 	public String describe() {
-		String d = this.name.concat(";").concat(this.shortdesc).concat(";");
+//		String d = this.name.concat(";").concat(this.shortdesc).concat(";");
+		String d = "";
 		
 		for(Thing thing : getContents()) {
-			d = d.concat(thing.getName()).concat(";");
+			d = d.concat("[" + thing.getName() + "]").concat("; ");
 		}
 		
 		return d;
