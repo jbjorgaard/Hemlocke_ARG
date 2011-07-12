@@ -121,7 +121,7 @@ public class Game {
 		Get get = new Get();
 		Drop drop = new Drop();
 		Empty empty = new Empty();
-		Error error = new Error();
+//		Error error = new Error();
 		Say say = new Say();
 		Thing world = new Thing();
 		Thing r1 = new Thing();
