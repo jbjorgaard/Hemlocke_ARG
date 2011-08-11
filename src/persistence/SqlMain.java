@@ -11,12 +11,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
-import org.apache.ibatis.type.JdbcType;
-
-import test.Mapper;
-import test.Person;
-import test.Person.Name;
-
 import dataswarm.mybatis.SqliteDataSource;
 
 public class SqlMain {
@@ -29,8 +23,6 @@ public class SqlMain {
 		configuration.setCacheEnabled(true);
 		configuration.setAutoMappingBehavior(AutoMappingBehavior.FULL);
 		configuration.setUseColumnLabel(true);
-/* I dont quite get the Name class declaration in Person in the example */
-//		configuration.getTypeHandlerRegistry().register(Name.class, JdbcType.VARCHAR, new SqlNameTypeHandler());
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
 		SqlSession session = sqlSessionFactory.openSession();
 		configuration.addMapper(SqlMapper.class);

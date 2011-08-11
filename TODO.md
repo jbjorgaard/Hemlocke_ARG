@@ -1,5 +1,6 @@
 CURRENT
 =======
+* read mybatis manual
 * Start db support
 * mimic sql example using game db tables
 * create read update delete methods for things and brains

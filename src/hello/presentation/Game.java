@@ -167,16 +167,16 @@ public class Game {
 		npc002.setBrain(fb1);
 		npc003.setBrain(nb1);
 		
-		c1.setInfo(r1, "a short, slender young woman who appears to be in her twenties.\nDressed in a black body glove, she wears a black backpack covered in pockets.", ", a young woman", "Nightshade", "character");
-		npc002.setInfo(r2, "a grim, pale-skinned man standing about five and a half feet tall; dressed in all black including trenchcoat and fedora hat.", ", a man in black", "Hemlocke", "character");
-		npc001.setInfo(r1, "A greedy little puke", "Greedy Puke", "PunkDaddy", "character");
-		npc003.setInfo(r1, "a nosey guy", ", this guy is nosey", "Cirano", "character");
-		r1.setInfo(world, "in an archway covered in years of unkept brambles.", " that is almost hidden", "an archway", "room");
+		c1.setInfo(r1, "a short, slender young woman who appears to be in her twenties.\nDressed in a black body glove, she wears a black backpack covered in pockets.", ", a young woman", "Nightshade", 1);
+		npc002.setInfo(r2, "a grim, pale-skinned man standing about five and a half feet tall; dressed in all black including trenchcoat and fedora hat.", ", a man in black", "Hemlocke", 1);
+		npc001.setInfo(r1, "A greedy little puke", "Greedy Puke", "PunkDaddy", 1);
+		npc003.setInfo(r1, "a nosey guy", ", this guy is nosey", "Cirano", 1);
+		r1.setInfo(world, "in an archway covered in years of unkept brambles.", " that is almost hidden", "an archway", 2);
 		r1.addLink("north", r2.getId());
-		r2.setInfo(world, "in a clearing, in a very strange woods.", "", "forest clearing", "room");
+		r2.setInfo(world, "in a clearing, in a very strange woods.", "", "forest clearing", 2);
 		r2.addLink("south", r1.getId());
-		i1.setInfo(i2, " ", "an ornate curved knife.", "knife", "item");
-		i2.setInfo(r1, " ", "a plain looking box.", "box", "item");
+		i1.setInfo(i2, " ", "an ornate curved knife.", "knife", 3);
+		i2.setInfo(r1, " ", "a plain looking box.", "box", 3);
 		p1.setInfo("peartree", c1);
 		world.addContent(r1.getId());
 		world.addContent(r2.getId());

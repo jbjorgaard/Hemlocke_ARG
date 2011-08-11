@@ -10,14 +10,14 @@ public class Thing {
 	Long key;
 	String description;
 	String name;
-	String type;
+	int type;
 	String shortdesc;
 	Long brain;
 	Long location;
 	private HashSet<Long> contents = new HashSet<Long>();
 	private HashMap<String, Long> links = new HashMap<String, Long>();
 	
-	public void setInfo(Thing l, String d, String sd, String n, String t) {
+	public void setInfo(Thing l, String d, String sd, String n, int t) {
 		this.location = l.getId();
 		l.addContent(this.key);
 		description = d;
