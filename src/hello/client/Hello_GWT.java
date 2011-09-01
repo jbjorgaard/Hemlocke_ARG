@@ -1,5 +1,7 @@
 package hello.client;
 
+import java.sql.SQLException;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -11,7 +13,12 @@ import hello.presentation.*;
 public class Hello_GWT implements EntryPoint {
 	
 	public void onModuleLoad() {
-		initialize();
+		try {
+			initialize();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final DivElement output = DOM.getElementById("output").cast();
 		final TextBox input = TextBox.wrap(DOM.getElementById("input"));
 
@@ -28,7 +35,7 @@ public class Hello_GWT implements EntryPoint {
 	public void printHTML() {
 		
 	}
-	public void initialize() {
+	public void initialize() throws SQLException {
 		Game.currentGame.initializeGame();
 	}
 }

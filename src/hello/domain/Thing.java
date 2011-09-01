@@ -8,10 +8,10 @@ import java.util.HashSet;
 
 public class Thing {
 	Long key;
-	String description;
-	String name;
 	int type;
+	String name;
 	String shortdesc;
+	String description;	
 	Long brain;
 	Long location;
 	private HashSet<Long> contents = new HashSet<Long>();

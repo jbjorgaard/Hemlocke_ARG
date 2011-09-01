@@ -1,0 +1,24 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "things" (
+    "key" INTEGER NOT NULL,
+    "type" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
+    "shortdesc" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "brain" INTEGER,
+    "location" INTEGER
+);
+CREATE TABLE "brains" (
+    "key" INTEGER NOT NULL,
+    "owner" INTEGER NOT NULL
+);
+CREATE TABLE "thing_contents" (
+    "thing" INTEGER NOT NULL,
+    "content" INTEGER NOT NULL
+);
+CREATE TABLE "thing_links" (
+    "thing" INTEGER NOT NULL,
+    "links" INTEGER NOT NULL
+);
+COMMIT;

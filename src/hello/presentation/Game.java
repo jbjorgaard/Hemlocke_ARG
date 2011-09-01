@@ -2,8 +2,23 @@ package hello.presentation;
 
 import hello.domain.Player;
 import hello.domain.Thing;
+
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.session.AutoMappingBehavior;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.transaction.TransactionFactory;
+import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+
+import persistence.SqlMapper;
+import dataswarm.mybatis.SqliteDataSource;
 
 public class Game {
 	HashMap<String, Player> mapLogin = new HashMap<String, Player>();
@@ -20,6 +35,7 @@ public class Game {
 	public boolean running = true;
 	int mode = 0;
 	public static Game currentGame = new Game();
+	private static SqlMapper m;
 	
 	public static Game getGame() {
 		return currentGame;
@@ -114,7 +130,7 @@ public class Game {
 	public Command getCommand(String s) {
 		return mapCommand.get(s);
 	}
-	public void initializeGame() {
+	public void initializeGame() throws SQLException{
 		Player p1 = new Player();
 		Look look = new Look();
 		Go go = new Go();
@@ -136,6 +152,38 @@ public class Game {
 		FriendlyBrain fb1 = new FriendlyBrain();
 		NoseyBrain nb1 = new NoseyBrain();
 		CharacterBrain pcb1 = new CharacterBrain();
+		
+		TransactionFactory transactionFactory = new JdbcTransactionFactory();
+		Environment environment = new Environment("development", transactionFactory, new SqliteDataSource("sqlite://tmp/hemlockedb"));
+		Configuration configuration = new Configuration(environment);
+		configuration.setCacheEnabled(true);
+		configuration.setAutoMappingBehavior(AutoMappingBehavior.FULL);
+		configuration.setUseColumnLabel(true);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+		SqlSession session = sqlSessionFactory.openSession();
+		configuration.addMapper(SqlMapper.class);
+		
+		try {
+			Statement st = session.getConnection().createStatement();
+			for (String stmt : SqlMapper.CREATE_TABLES) {
+				st.execute(stmt);
+			}
+			session.commit(true);
+			st.close();
+			m = session.getMapper(SqlMapper.class);
+			/* Create and insert Things into db + brains and links.  Write constructors for each */			
+//			Person fred = insertPerson(new Person("fred", "123 Elm Street"));
+//			Person joe = insertPerson(new Person("joe", "555 Phonebook Terrace"));
+//			Person mary = insertPerson(new Person("mary", "1313 Mockingbird Lane"));
+//			m.insertFriend(fred, joe);
+//			m.insertFriend(fred, mary);
+//			m.insertFriend(joe, mary);
+//			Person fred2 = m.getPersonByName("fred");
+//			System.out.println(fred2);
+//			System.out.println("fred1: " + fred + ", fred2: " + fred2 + ", fred3: " + fred2.friends.get(0).friends.get(0).hashCode());
+		} finally {
+			session.close();
+		}
 		
 		world.setId();
 		r1.setId();
